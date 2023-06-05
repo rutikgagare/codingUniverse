@@ -1,0 +1,53 @@
+.main{
+    display: flex;
+    gap: 1rem;
+    width: 90%;
+    margin: auto;
+    padding: 1rem;
+}
+
+.write{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.postDetails{
+    width: 20%;
+}
+
+.write .title{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem 0;
+}
+
+.title input{
+    padding: 0.5rem;
+}
+
+.postDetails{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem 0;
+}
+
+.postDetails button{
+    padding: 0.5rem;
+    border: none;
+    outline: none;
+    background-color: rgb(43, 149, 206);
+    color: white;
+    border-radius: 0.2rem;
+}
+
+.postDetails select{
+    padding: 0.5rem;
+    outline: none;
+}
+
+.postDetails a{
+    color: black;
+    text-decoration: none;
+}

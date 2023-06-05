@@ -1,0 +1,21 @@
+
+.home_image{
+    background-color: black;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position:0ch;
+    height: 25rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.main_content{
+    font-size: 1.2rem;
+    width: 50%;
+    border: 1px solid turquoise;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    color: white;
+}
