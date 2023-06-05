@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux';
 import { loginActions } from '../store/loginSlice';
 import { useSelector } from 'react-redux';
 import { articleActions } from '../store/articleSlice';
+import classes from './Home.module.css';
 let send = false;
 
 const Home = () => {
@@ -60,7 +61,7 @@ const Home = () => {
   }, [])
 
   return (
-    <div>
+    <div className={classes.home}>
       <Nav></Nav>
       <Main></Main>
       <Blogs></Blogs>

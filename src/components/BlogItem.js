@@ -6,7 +6,7 @@ const BlogItem = (props) => {
     <div className={classes.blogItem}>
        <h3>{props.title}</h3>
        {/* <p>{props.content}</p> */}
-       <div dangerouslySetInnerHTML={{ __html: props.content }} />
+       <div className={classes.content} dangerouslySetInnerHTML={{ __html: props.content }} />
     </div>
   )
 }

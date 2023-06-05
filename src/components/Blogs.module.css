@@ -10,6 +10,6 @@
 
 @media screen and (max-width: 600px) {
     .blogs {
-      width: 90%;
+      width: 100%;
     }
-  }
+}
