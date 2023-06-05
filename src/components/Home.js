@@ -43,21 +43,21 @@ const Home = () => {
 
   
 
-  // useEffect(() => {
-  //   const fetch_data = async () => {
-  //     const response = await fetch('https://codinguniverse-20c51-default-rtdb.firebaseio.com/articles.json');
-  //     const data = await response.json();
+  useEffect(() => {
+    const fetch_data = async () => {
+      const response = await fetch('https://codinguniverse-20c51-default-rtdb.firebaseio.com/articles.json');
+      const data = await response.json();
       
-  //     if(data.items.length === 0){
-  //       return;
-  //     }
+      if(data.items.length === 0){
+        return;
+      }
 
-  //     dispatch(articleActions.replaceAll(data.items));
-  //   }
+      dispatch(articleActions.replaceAll(data.items));
+    }
 
-  //   fetch_data();
+    fetch_data();
 
-  // }, [])
+  }, [])
 
   return (
     <div>
