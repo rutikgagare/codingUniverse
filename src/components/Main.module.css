@@ -4,7 +4,7 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-position:0ch;
-    height: 25rem;
+    min-height: 25rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -18,4 +18,8 @@
     padding: 2rem;
     border-radius: 0.5rem;
     color: white;
+}
+
+.main_content{
+    width: 90%;
 }

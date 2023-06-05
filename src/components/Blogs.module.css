@@ -2,3 +2,14 @@
     width: 80%;
     margin: auto;
 }
+
+.blogs h1{
+    text-align: center;
+    margin: 2rem auto;
+}
+
+@media screen and (max-width: 600px) {
+    .blogs {
+      width: 90%;
+    }
+  }

@@ -8,3 +8,12 @@
 .blogItem h3{
     margin: 1rem 0;
 }
+
+.blogItem ul,ol{
+    padding: 1rem;
+}
+
+.blogItem img{
+    width: 80%;
+    margin: auto;
+}
