@@ -46,4 +46,10 @@
     .blogItem{
         width: 97%;
     }
+
+    .blogItem .details{
+        display: flex;
+        flex-direction: column;
+    }
+    
 }
