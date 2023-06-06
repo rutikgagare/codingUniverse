@@ -1,9 +1,16 @@
 import React from 'react';
 import classes from './BlogItem.module.css';
+import { useNavigate } from 'react-router-dom';
 
 const BlogItem = (props) => {
+  const navigate = useNavigate();
+
+  const displayDetailedBlog = () =>{
+    navigate(`/:${props.id}`)
+  }
+
   return (
-    <div className={classes.blogItem}>
+    <div className={classes.blogItem} onClick={displayDetailedBlog}>
       <h2>{props.title}</h2>
 
       <div className={classes.details}>
