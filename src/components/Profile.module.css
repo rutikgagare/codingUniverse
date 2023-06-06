@@ -22,12 +22,12 @@
 
 .profileDetails h2{
     font-weight: 600;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
 }
 
 .profileDetails h3{
     font-weight: 500;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
 }
 
 .profileDetails hr{
@@ -43,7 +43,7 @@
 }
 
 .myBlogs .heading{
-    margin: 2rem 0;
+    margin: 1rem 0;
 }
 
 .myBlogs .message h3{
@@ -80,6 +80,11 @@
 
 @media screen and (max-width: 600px) {
     .profile{
-        width: 95%;
+        width: 98%;
+    }
+
+    .profileDetails h2,h3{
+        margin: 0.5rem;
+        font-size: 1rem;
     }
 }
