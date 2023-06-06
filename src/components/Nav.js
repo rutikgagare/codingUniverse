@@ -10,7 +10,7 @@ const Nav = () => {
   return (
     <div className={classes.navbar}>
         <div className={classes.logo}>
-          <h2> <i class="fas fa-terminal"></i> CodingUniverse</h2>
+          <Link to={'/'}><h2><i class="fas fa-terminal"></i> CodingUniverse</h2></Link>
         </div>
         <div className={classes.nav}>
             <ul>

@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import classes from './SignUp.module.css';
 import { auth, googleProvider } from '../config/firebase';
-import { createUserWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
+import { createUserWithEmailAndPassword, signInWithPopup,updateProfile } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 const SignUp = () => {
 
+  const [userName,setUserName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
@@ -21,6 +22,9 @@ const SignUp = () => {
     event.preventDefault();
     try {
       const response = await createUserWithEmailAndPassword(auth, email, password);
+      await updateProfile(response.user, {
+        displayName: userName
+      });
       navigate('/signin');
     } catch (error) {
     }
@@ -42,6 +46,7 @@ const SignUp = () => {
       <form onSubmit={registrationHandler} className={classes.form}>
         <h2>SignUp</h2>
 
+        <input type="text" placeholder='User name' onChange={(e) => { setEmail(e.target.value) }} />
         <input type="email" placeholder='Email' onChange={(e) => { setEmail(e.target.value) }} />
         <input type="password" placeholder='Password' onChange={(e) => { setPassword(e.target.value) }} />
 
