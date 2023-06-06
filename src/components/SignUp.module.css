@@ -37,12 +37,18 @@
     align-items: center;
     gap: 0 0.5rem;
     outline: none;
-    border: 1px solid grey;
+    border: none;
     border-radius: 0.5rem;
+    background-color: rgb(49, 98, 233);
+    color: white;
 }
 
-.form span,hr{
+.form span{
     margin: 0.5rem 0;
+}
+
+.form hr{
+    margin: 1rem 0;
 }
 
 .form .google img{
@@ -53,5 +59,11 @@
 .form a{
     text-decoration: none;
     color: black;
+}
+
+@media screen and (max-width: 600px) {
+    .form{
+        width: 90%;
+    }
 }
 

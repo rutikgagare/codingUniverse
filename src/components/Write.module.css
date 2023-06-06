@@ -2,7 +2,7 @@
     display: flex;
     gap: 1rem;
     width: 90%;
-    margin: auto;
+    margin: 2rem auto;
     padding: 1rem;
 }
 
@@ -50,4 +50,19 @@
 .postDetails a{
     color: black;
     text-decoration: none;
+}
+
+@media screen and (max-width: 600px) {
+    .main{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .write{
+        width: 100%;
+    }
+
+    .postDetails{
+        width: 100%;
+    }
 }

@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import { auth} from '../config/firebase';
 import { useSelector } from 'react-redux';
 import { v4 as uuid } from 'uuid';
+import Nav from './Nav';
 
 const Write = () => {
 
@@ -44,6 +45,8 @@ const Write = () => {
     
 
     return (
+        <>
+        <Nav></Nav>
         <div className={classes.main}>
             <div className={classes.write}>
                 <div className={classes.title}>
@@ -73,7 +76,7 @@ const Write = () => {
                 <Link to='/'>Go to home</Link>
             </div>
         </div>
-
+        </>
     )
 }
 export default Write;
