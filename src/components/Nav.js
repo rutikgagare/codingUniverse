@@ -16,7 +16,7 @@ const Nav = () => {
             <ul>
                 <li><Link to={'/signup'}>Write</Link></li>
                 {/* <li><Link to={'/signup'}>SignUp</Link></li> */}
-                {user && <li>{auth.currentUser.email}</li>}
+                {/* {user && <li>{auth.currentUser.email}</li>} */}
             </ul>
         </div>
     </div>

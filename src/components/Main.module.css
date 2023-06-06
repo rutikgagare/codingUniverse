@@ -37,3 +37,11 @@
     text-align: center;
 }
 
+@media screen and (max-width: 600px) {
+    .main_content{
+        width: 90%;
+        border: 2px solid aqua;
+        padding: 1.5rem;
+    }
+}
+

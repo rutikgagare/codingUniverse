@@ -9,5 +9,8 @@
 @media screen and (max-width: 600px) {
     .blogs {
       width: 100%;
+      padding: 0.5rem;
+      gap: 1rem 0rem;
     }
+
 }
