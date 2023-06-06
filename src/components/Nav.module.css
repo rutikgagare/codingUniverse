@@ -47,13 +47,10 @@ a{
 @media screen and (max-width: 600px) {
     .logo h2{
         font-weight: 600;
-        font-size: 1rem;
+        font-size: 1.1rem;
     }
 
-    .navbar .nav ul{
-        display: flex;
-        align-items: center;
-        list-style-type: none;
-        gap: 1rem;
+    .navbar .nav ul li{
+        font-size: 0.9rem;
     }
 }
