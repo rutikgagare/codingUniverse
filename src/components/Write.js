@@ -8,9 +8,19 @@ import { auth } from '../config/firebase';
 import { useSelector } from 'react-redux';
 import { v4 as uuid } from 'uuid';
 import { useNavigate } from 'react-router-dom';
+import { loginActions } from '../store/loginSlice';
 import Nav from './Nav';
 
 const Write = () => {
+
+    useEffect(() => {
+        auth.onAuthStateChanged((user) => {
+          if (user) {
+            dispatch(loginActions.login());
+          }
+        });
+      }, []);
+
     const navigate = useNavigate();
 
     const blogItems = useSelector(state => state.article.items);
