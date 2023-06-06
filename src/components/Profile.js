@@ -1,4 +1,4 @@
-import React,{useEffect, useState} from 'react';
+import React,{useEffect} from 'react';
 import Nav from './Nav';
 import BlogItem from './BlogItem';
 import classes from './Profile.module.css';
@@ -11,7 +11,6 @@ import { signOut } from 'firebase/auth';
 
 const Profile = () => {
   const dispatch = useDispatch();
-  const [myarticles,setMyArticles] = useState('');
 
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
@@ -23,13 +22,10 @@ const Profile = () => {
 
   const user = useSelector(state => state.login.logedIn);
   const articles = useSelector(state => state.article.items);
-
-  if(user){
-    const temp = articles.filter((item) => {
-      return (item.user == auth.currentUser.uid);
-    });
-    setMyArticles(temp);
-  }
+  
+  const myarticles = articles.filter((item) => {
+    return (item.user == auth?.currentUser?.uid);
+  });
 
   const logoutHandler = async () =>{
     const response = await signOut(auth);
