@@ -38,6 +38,10 @@
     margin: 1rem auto;
 }
 
+.blogItem .content a{
+    max-width: 95%;
+}
+
 @media screen and (max-width: 600px) {
     .blogItem{
         width: 97%;
