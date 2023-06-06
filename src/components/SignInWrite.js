@@ -5,7 +5,7 @@ import { signInWithPopup, signInWithEmailAndPassword } from 'firebase/auth';
 import { auth, googleProvider } from '../config/firebase';
 import { Link } from 'react-router-dom';
 
-const SignIn = () => {
+const SignInWrite = () => {
     const navigate = useNavigate();
 
     const [email, setEmail] = useState('');
@@ -15,16 +15,18 @@ const SignIn = () => {
         event.preventDefault();
         try {
             const response = await signInWithEmailAndPassword(auth, email, password);
-            navigate('/');
+            navigate('/write');
 
         } catch (error) {
             console.log(error);
         }
     }
+
+
     const signInWithGoogleHandler = async () => {
         try {
             await signInWithPopup(auth, googleProvider);
-            navigate('/');
+            navigate('/write');
 
         } catch (error) {
             console.log(error);
@@ -35,12 +37,12 @@ const SignIn = () => {
         <div className={classes.main}>
 
             <form className={classes.form} onSubmit={loginHandler} >
-                <h2>Welcome back</h2>
+                <h2>Welcome back </h2>
                 <input type="email" placeholder='Email address' onChange={(e) => { setEmail(e.target.value) }} />
                 <input type="password" placeholder='Password' onChange={(e) => { setPassword(e.target.value) }} />
 
                 <button type="submit">Login <i class="fa-solid fa-arrow-right"></i></button>
-                <span>Don't have an account? <Link to="/signup">Sign up</Link></span>
+                <span>Don't have an account? <Link to="/signupwrite">Sign up</Link></span>
 
                 <div><hr /></div>
 
@@ -49,4 +51,4 @@ const SignIn = () => {
             </form>
         </div>)
 }
-export default SignIn;
+export default SignInWrite;

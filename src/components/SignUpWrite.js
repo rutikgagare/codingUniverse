@@ -5,14 +5,14 @@ import { createUserWithEmailAndPassword, signInWithPopup,updateProfile } from 'f
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
-const SignUp = () => {
+const SignUpWrite = () => {
 
   const [userName,setUserName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
-  
+
   const registrationHandler = async (event) => {
     event.preventDefault();
     try {
@@ -20,7 +20,7 @@ const SignUp = () => {
       await updateProfile(response.user, {
         displayName: userName
       });
-      navigate('/signin');
+      navigate('/signinwrite');
     } catch (error) {
     }
   }
@@ -29,7 +29,7 @@ const SignUp = () => {
     try {
       await signInWithPopup(auth, googleProvider);
 
-      navigate('/');
+      navigate('/write');
 
     } catch (error) {
       console.log(error);
@@ -46,7 +46,7 @@ const SignUp = () => {
         <input type="password" placeholder='Password' onChange={(e) => { setPassword(e.target.value) }} />
 
         <button type="submit" > SignUp <i class="fa-solid fa-arrow-right"></i></button>
-        <span>Already have a account? <Link to="/signin">Log in</Link></span>
+        <span>Already have a account? <Link to="/signinwrite">Log in</Link></span>
 
         <div><hr /></div>
 
@@ -57,4 +57,4 @@ const SignUp = () => {
   )
 }
 
-export default SignUp;
+export default SignUpWrite;

@@ -44,8 +44,9 @@ a{
     color: black;
 }
 
-/* @media screen and (max-width: 600px) {
-    a{
-        display: none;
+@media screen and (max-width: 600px) {
+    .logo h2{
+        font-weight: 600;
+        font-size: 1.2rem;
     }
-} */
+}

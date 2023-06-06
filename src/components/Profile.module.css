@@ -1,0 +1,79 @@
+.profile{
+    position: relative;
+    width: 80%;
+    /* border: 2px solid green;
+    background-color: whitesmoke; */
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    margin: 2rem auto;
+    padding: 1rem;
+    border-radius: 0.4rem;
+}
+
+.profile .profileDetails{
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profileDetails img{
+    margin-bottom: 1rem;
+}
+
+.profileDetails h2{
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.profileDetails h3{
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+.profileDetails hr{
+    color: black;
+    margin: 0.5rem 0;
+    width: 100%;
+}
+
+.myBlogs{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.myBlogs .heading{
+    margin: 2rem 0;
+}
+
+.myBlogs .message h3{
+    margin: 1rem 0;
+    color: rgb(35, 77, 193);
+}
+
+.myBlogs .message h4{
+    margin: 1rem 0;
+}
+
+.myBlogs .message h4 a{
+    color: rgb(35, 77, 193);
+}
+
+.logout{
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+}
+
+.logout button{
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    outline: none;
+    border: none;
+    border-radius: 0.3rem;
+    background-color: rgb(73, 112, 195);
+    color: white;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}

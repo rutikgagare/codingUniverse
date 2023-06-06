@@ -1,8 +1,8 @@
 .blogItem{
     width: 80%;
-    padding: 2rem;
+    padding: 1rem 2rem;
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
-    margin: 1rem auto;
+    margin: 2rem auto;
     border-radius: 0.5rem;
     background-color: white;
 }
@@ -41,10 +41,6 @@
     max-width: 95%;
     display: block;
     margin: 1rem auto;
-}
-
-.main{
-    background-color: rgb(209, 205, 205);
 }
 
 @media screen and (max-width: 600px) {

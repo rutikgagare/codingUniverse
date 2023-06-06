@@ -18,7 +18,7 @@ const BlogItem = (props) => {
         <h3><span>Published on : </span>{props.date}</h3>
       </div>
       <div className={classes.description}>
-        <p>{props.plaintext.substring(0,800)}.................</p>
+        <p>{props.plaintext.substring(0,400)}.................</p>
       </div>
       {/* <div className={classes.content} dangerouslySetInnerHTML={{ __html: props.content }} /> */}
     </div>

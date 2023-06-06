@@ -7,15 +7,21 @@ import { articleActions } from '../store/articleSlice';
 import { auth } from '../config/firebase';
 import { useSelector } from 'react-redux';
 import { v4 as uuid } from 'uuid';
+import { useNavigate } from 'react-router-dom';
 import Nav from './Nav';
 
 const Write = () => {
+    const navigate = useNavigate();
 
     const blogItems = useSelector(state => state.article.items);
+    const user = useSelector(state => state.login.logedIn);
+
     const dispatch = useDispatch();
+    
     const [editorData, setEditorData] = useState('');
     const [plainText, setPlainText] = useState('');
     const [title, setTitle] = useState('');
+    const [category, setCategory] = useState('');
 
     const handleEditorChange = (event, editor) => {
         const data = editor.getData();
@@ -35,7 +41,9 @@ const Write = () => {
         console.log(plainText);
     };
 
-    const addArticleHandler = () => {
+    const addArticleHandler = (event) => {
+        event.preventDefault();
+
         const uniqueId = uuid();
 
         const currentDate = new Date();
@@ -55,8 +63,18 @@ const Write = () => {
             plaintext: plainText,
             user: auth.currentUser.uid,
             author: auth.currentUser.displayName,
-            date: formattedDate
+            date: formattedDate,
+            category:category
         }));
+
+        setEditorData('');
+        setTitle('');
+        setPlainText('');
+        setCategory('');
+    }
+
+    const redirecToRegister = () => {
+        navigate('/signupwrite');
     }
 
     useEffect(() => {
@@ -72,34 +90,54 @@ const Write = () => {
     return (
         <>
             <Nav></Nav>
-            <div className={classes.main}>
-                <div className={classes.write}>
-                    <div className={classes.title}>
-                        <label htmlFor="">Post Title</label>
-                        <input type="text" placeholder='Enter Title' onChange={(event) => { setTitle(event.target.value) }} />
+            {user && <div className={classes.main}>
+
+                <form onSubmit={addArticleHandler}>
+                    <div className={classes.write}>
+                        <div className={classes.title}>
+                            <label htmlFor="">Post Title</label>
+                            <input type="text" placeholder='Enter Title' required onChange={(event) => { setTitle(event.target.value) }} value={title} />
+                        </div>
+
+                        <div className={classes.editor}>
+                            <CKEditor
+                                editor={ClassicEditor}
+                                data={editorData}
+                                onChange={handleEditorChange}
+                            />
+                        </div>
                     </div>
 
-                    <div className={classes.editor}>
-                        <CKEditor
-                            editor={ClassicEditor}
-                            data={editorData}
-                            onChange={handleEditorChange}
-                        />
+                    <div className={classes.postDetails}>
+                        <h3>Post Details</h3>
+                        <select name="category" onChange={(event)=>{setCategory(event.target.value)}} required>
+                            <option value="">default</option>
+                            <option value="Programming">Programming</option>
+                            <option value="DSA">DSA</option>
+                            <option value="C++ Programming">C++ Programming</option>
+                            <option value="Python">Python</option>
+                            <option value="Javascript">Javascript</option>
+                            <option value="React">React</option>
+                            <option value="Web Development">Web Development</option>
+                            <option value="Frontend-development">Frontend-development</option>
+                            <option value="Github">Github</option>
+                        </select>
+
+                        <button type='submit'>Submit for Review</button>
                     </div>
-                </div>
-
-                <div className={classes.postDetails}>
-                    <h3>Post Details</h3>
-                    <select name="category" id="">
-                        <option value="">Programming</option>
-                        <option value="">DSA</option>
-                        <option value="">C++ Programming</option>
-                        <option value="">Python</option>
-                    </select>
-
-                    <button onClick={addArticleHandler}>Submit for Review</button>
-                </div>
+                </form>
             </div>
+            }
+            {
+                !user &&
+                <div className={classes.main}>
+                    <div className={classes.loginIssue}>
+                        <h2>Login Issue</h2>
+                        <h3>Please login first to view the details.</h3>
+                        <button onClick={redirecToRegister}>Login / Register</button>
+                    </div>
+                </div>
+            }
         </>
     )
 }

@@ -39,8 +39,9 @@
     outline: none;
     border: none;
     border-radius: 0.5rem;
-    background-color: rgb(49, 98, 233);
+    background-color: rgb(73, 112, 195);
     color: white;
+    font-size: 1rem;
 }
 
 .form span{
