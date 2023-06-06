@@ -4,7 +4,6 @@ import { auth, googleProvider } from '../config/firebase';
 import { createUserWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 
 const SignUp = () => {
 

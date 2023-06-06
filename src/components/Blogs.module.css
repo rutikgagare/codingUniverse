@@ -1,11 +1,9 @@
 .blogs{
-    width: 80%;
+    width: 100%;
     margin: auto;
-}
-
-.blogs h1{
-    text-align: center;
-    margin: 2rem auto;
+    background-color: rgb(209, 205, 205);
+    padding: 2rem;
+    gap: 1rem;
 }
 
 @media screen and (max-width: 600px) {

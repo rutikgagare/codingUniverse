@@ -1,10 +1,18 @@
+.logo h2{
+    font-weight: 600;
+    color:blue;
+}
+
+.logo h2 i{
+    color: black;
+}
+
 .navbar{
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0.5rem 2rem;
-    background-color: rgb(36, 122, 176);
-    color: white;
+    background-color: whitesmoke;
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
     position: sticky;
     top: 0;
@@ -26,12 +34,13 @@
 
 .navbar .nav ul li{
     padding: 0.5rem 0;
-    font-size: 1.3rem;
+    font-size: 1.1rem;
+    font-weight: 600;
 }
 
 a{
     text-decoration: none;
-    color: white;
+    color: black;
 }
 
 @media screen and (max-width: 600px) {

@@ -1,26 +1,39 @@
 
 .home_image{
     background-color: black;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position:0ch;
+    /* background-image: url('https://images.pexels.com/photos/735911/pexels-photo-735911.jpeg?auto=compress&cs=tinysrgb&w=600'); */
+    width: 100%;
+    margin: auto;
     min-height: 25rem;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     padding: 2rem;
 }
 
 
 .main_content{
     font-size: 1.2rem;
-    width: 50%;
-    border: 1px solid turquoise;
+    width: 70%;
     padding: 2rem;
     border-radius: 0.5rem;
     color: white;
 }
 
-.main_content{
-    width: 90%;
+.main_content h2{
+    text-align: center;
+    margin: 2rem 0;
+    font-weight: 500;
+    color: yellow;
 }
+
+
+.main_content p{
+    font-weight: 400;
+    font-size: 1.1rem;
+    text-align: center;
+}
+

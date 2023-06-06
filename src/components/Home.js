@@ -12,10 +12,8 @@ let send = false;
 
 const Home = () => {
 
-  const dispatch = useDispatch();
-
   const blogItems = useSelector(state => state.article.items);
-  console.log("home : ", blogItems);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
@@ -25,49 +23,24 @@ const Home = () => {
     });
   }, []);
 
+ 
   useEffect(() => {
-    const send_data = async () => {
-      if (send === false) {
-        send = true;
-        return;
-      }
-
-      const response = await fetch('https://codinguniverse-20c51-default-rtdb.firebaseio.com/articles.json', {
-        method: "PUT",
-        body: JSON.stringify({ items: blogItems })
-      });
-    };
-
-    send_data();
-
-  }, [blogItems]);
-
-  
-
-  useEffect(() => {
-    const fetch_data = async () => {
-      const response = await fetch('https://codinguniverse-20c51-default-rtdb.firebaseio.com/articles.json');
+    console.log("in fetchdata",blogItems);
+    const fetchData = async () => {
+      const response = await fetch('https://codinguniverse-20c51-default-rtdb.firebaseio.com/article.json');
       const data = await response.json();
-      
-      if(data.items.length === 0){
-        return;
-      }
-
-      dispatch(articleActions.replaceAll(data.items));
+      dispatch(articleActions.replace(data.items));
     }
+    fetchData();
 
-    fetch_data();
-
-  }, [])
+  }, []);
 
   return (
     <div className={classes.home}>
       <Nav></Nav>
       <Main></Main>
       <Blogs></Blogs>
-      {/* <Write></Write> */}
     </div>
   )
 }
-
 export default Home;

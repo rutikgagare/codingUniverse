@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import classes from './Write.module.css';
@@ -6,8 +6,12 @@ import { useDispatch } from 'react-redux';
 import { articleActions } from '../store/articleSlice';
 import { Link } from 'react-router-dom';
 import { auth} from '../config/firebase';
+import { useSelector } from 'react-redux';
+import { v4 as uuid } from 'uuid';
 
 const Write = () => {
+
+    const blogItems = useSelector(state => state.article.items);
     const dispatch = useDispatch();
     const [editorData, setEditorData] = useState('');
     const [title,setTitle] = useState('');
@@ -18,14 +22,26 @@ const Write = () => {
     };
 
     const addArticleHandler = () =>{
-        console.log("add article");
+        const uniqueId = uuid();
         dispatch(articleActions.addArticle({
-            id:Math.random().toString,
+            id:uniqueId,
             title:title,
             content:editorData,
-            user:auth.currentUser.uid
+            user:auth.currentUser.uid,
+            author:auth.currentUser.email
         }));
     }
+
+    useEffect(()=>{
+        const sendData = async () => {
+            await fetch('https://codinguniverse-20c51-default-rtdb.firebaseio.com/article.json', {
+              method: "PUT",
+              body: JSON.stringify({ items: blogItems })
+            })
+        }
+        sendData();
+    },[blogItems]);
+    
 
     return (
         <div className={classes.main}>
