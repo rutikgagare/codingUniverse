@@ -43,6 +43,10 @@
     margin: 1rem auto;
 }
 
+.main{
+    background-color: rgb(209, 205, 205);
+}
+
 @media screen and (max-width: 600px) {
     .blogItem{
         width: 95%;

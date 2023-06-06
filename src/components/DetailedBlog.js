@@ -17,7 +17,7 @@ const DetailedBlog = () => {
     const props = blogItems[0];
 
     return (
-        <>
+        <div className={classes.main}>
             <Nav></Nav>
             <div className={classes.blogItem}>
                 <h2>{props.title}</h2>
@@ -29,7 +29,7 @@ const DetailedBlog = () => {
 
                 <div className={classes.content} dangerouslySetInnerHTML={{ __html: props.content }} />
             </div>
-        </>
+        </div>
     )
 }
 
