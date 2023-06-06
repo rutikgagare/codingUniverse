@@ -77,3 +77,9 @@
     gap: 0.5rem;
     align-items: center;
 }
+
+@media screen and (max-width: 600px) {
+    .profile{
+        width: 95%;
+    }
+}
