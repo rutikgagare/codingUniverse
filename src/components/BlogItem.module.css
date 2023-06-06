@@ -49,7 +49,7 @@
 
 @media screen and (max-width: 600px) {
     .blogItem{
-        width: 95%;
+        width: 90%;
     }
 
     .blogItem .details{
