@@ -27,12 +27,19 @@
     font-weight: 600;
 }
 
+.blogItem .content{
+    padding: 0.5rem;
+    margin: 1rem 0;
+}
+
 .blogItem .content img{
+    max-width: 90%;
     display: block;
     margin: 1rem auto;
 }
 
-.blogItem .content{
-    padding: 0.5rem;
-    margin: 1rem 0;
+@media screen and (max-width: 600px) {
+    .blogItem{
+        width: 95%;
+    }
 }
