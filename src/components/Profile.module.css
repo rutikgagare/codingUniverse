@@ -80,7 +80,8 @@
 
 @media screen and (max-width: 600px) {
     .profile{
-        width: 98%;
+        width: 95%;
+        padding: 0.2rem;
     }
 
     .profileDetails h2,h3{
