@@ -89,7 +89,7 @@
 }
 
 @media screen and (max-width: 600px) {
-    .main{
+    .form{
         display: flex;
         flex-direction: column;
     }
