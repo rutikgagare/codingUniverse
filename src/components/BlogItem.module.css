@@ -74,6 +74,7 @@
 @media screen and (max-width: 600px) {
     .blogItem{
         width: 90%;
+        font-size: 1rem;
     }
 
     .blogItem .details{
