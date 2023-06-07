@@ -43,14 +43,22 @@
     display: flex;
     flex-direction: column;
     gap: 1rem;
-}
-
-.write .editor{
-    z-index: 1;
+    background-color: white;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    border-radius: 0.5rem;
+    padding: 1rem;
 }
 
 .postDetails{
     width: 20%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background-color: white;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    border-radius: 0.5rem;
+    padding: 1rem;
+    max-height: 12rem;
 }
 
 .write .title{
@@ -59,14 +67,21 @@
     gap: 0.5rem 0;
 }
 
-.title input{
+.write .editor{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem 0;
+    z-index: 1;
+}
+
+form input,select{
     padding: 0.5rem;
 }
 
 .postDetails{
     display: flex;
     flex-direction: column;
-    gap: 1rem 0;
+    gap: 1rem;
 }
 
 .postDetails button{
@@ -76,16 +91,20 @@
     background-color: rgb(43, 149, 206);
     color: white;
     border-radius: 0.2rem;
-}
-
-.postDetails select{
-    padding: 0.5rem;
-    outline: none;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
 }
 
 .postDetails a{
     color: black;
     text-decoration: none;
+}
+
+form label{
+    font-weight: 600;
+    color: black;
+    margin-bottom: 1rem;
 }
 
 @media screen and (max-width: 600px) {

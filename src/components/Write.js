@@ -18,7 +18,7 @@ const Write = () => {
 
     const blogItems = useSelector(state => state.article.items);
     const user = useSelector(state => state.login.logedIn);
-    
+
     const [editorData, setEditorData] = useState('');
     const [plainText, setPlainText] = useState('');
     const [title, setTitle] = useState('');
@@ -26,20 +26,20 @@ const Write = () => {
 
     useEffect(() => {
         auth.onAuthStateChanged((user) => {
-          if (user) {
-            dispatch(loginActions.login());
-          }
+            if (user) {
+                dispatch(loginActions.login());
+            }
         });
-      }, [dispatch]);
+    }, [dispatch]);
 
-      useEffect(() => {
+    useEffect(() => {
         const fetchData = async () => {
-          const response = await fetch('https://codinguniverse-20c51-default-rtdb.firebaseio.com/article.json');
-          const data = await response.json();
-          dispatch(articleActions.replace(data.items));
+            const response = await fetch('https://codinguniverse-20c51-default-rtdb.firebaseio.com/article.json');
+            const data = await response.json();
+            dispatch(articleActions.replace(data.items));
         }
         fetchData();
-      }, [dispatch]);
+    }, [dispatch]);
 
     const handleEditorChange = (event, editor) => {
         const data = editor.getData();
@@ -51,12 +51,14 @@ const Write = () => {
         // Set the CKEditor data as innerHTML of the temporary element
         tempElement.innerHTML = data;
 
-        // Extract the plain text content
-        const text = tempElement.textContent || tempElement.innerText;
+        // Extract the plain text content with new lines, consecutive whitespaces, and spaces after each <li> element replaced by a single space
+        const text = Array.from(tempElement.childNodes)
+            .map(node => (node.textContent || node.innerText).replace(/\s+/g, ' '))
+            .join(' ');
 
         // Print the plain text
         setPlainText(text);
-        // console.log(plainText);
+        console.log(plainText);
     };
 
     const addArticleHandler = (event) => {
@@ -79,10 +81,10 @@ const Write = () => {
             title: title,
             content: editorData,
             plaintext: plainText,
-            user: auth.currentUser.uid,
-            author: auth.currentUser.displayName,
+            user: auth?.currentUser?.uid,
+            author: auth?.currentUser?.displayName,
             date: formattedDate,
-            category:category
+            category: category
         }));
 
         setEditorData('');
@@ -110,6 +112,21 @@ const Write = () => {
             <Nav></Nav>
             {user && <div className={classes.main}>
 
+                {/* <div className={classes.rules}>
+                    <h3> Rules :</h3>
+
+                    <p> 1. Stay focused: Ensure that your article stays on topic and focuses on the technical subject matter. Avoid including unrelated or extraneous information.</p>
+                    <p>2. Be clear and concise: Write in a clear and concise manner to make your article easily understandable. </p>
+                    <p>3. Provide examples and code snippets: Whenever possible, include relevant examples and code snippets to illustrate concepts or demonstrate solutions. This helps readers understand and apply the information effectively.</p>
+                    <p>4. Cite your sources: If you are referencing information, code snippets, or ideas from other sources, provide proper attribution and cite your references. This promotes transparency and gives credit to the original authors or sources.</p>
+                    <p>5. Be accurate and up-to-date: Ensure that the information you provide is accurate and up-to-date. </p>
+                    <p>6. Follow formatting guidelines: Adhere to any formatting guidelines or styles provided by the platform.</p>
+                    <p>7. Respect copyright and licensing: Do not copy and paste content from other sources without permission or proper licensing.</p>
+
+                    <h4> Remember, these rules are meant to guide users in creating high-quality articles that provide value to the readers. By following these guidelines, users can contribute to a positive and enriching experience within the coding community.</h4>
+                    <h3>Happy writing and sharing knowledge in the Coding Universe! 🚀🌌</h3>
+                </div> */}
+
                 <form onSubmit={addArticleHandler}>
                     <div className={classes.write}>
                         <div className={classes.title}>
@@ -117,7 +134,8 @@ const Write = () => {
                             <input type="text" placeholder='Enter Title' required onChange={(event) => { setTitle(event.target.value) }} value={title} />
                         </div>
 
-                        <div className={classes.editor}>
+                        <div id='editor' className={classes.editor}>
+                            <label htmlFor="editor">Write your article</label>
                             <CKEditor
                                 editor={ClassicEditor}
                                 data={editorData}
@@ -127,8 +145,9 @@ const Write = () => {
                     </div>
 
                     <div className={classes.postDetails}>
-                        <h3>Post Details</h3>
-                        <select name="category" onChange={(event)=>{setCategory(event.target.value)}} required>
+
+                        <label htmlFor="category">Category</label>
+                        <select name="category" id='category' onChange={(event) => { setCategory(event.target.value) }} required>
                             <option value="">default</option>
                             <option value="Programming">Programming</option>
                             <option value="DSA">DSA</option>
@@ -141,7 +160,7 @@ const Write = () => {
                             <option value="Github">Github</option>
                         </select>
 
-                        <button type='submit'>Submit for Review</button>
+                        <button type='submit'>Publish</button>
                     </div>
                 </form>
             </div>

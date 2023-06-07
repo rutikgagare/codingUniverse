@@ -5,6 +5,13 @@ import { useSelector } from 'react-redux';
 import classes from './BlogItem.module.css';
 
 const DetailedBlog = () => {
+
+    // Scroll to the top of the page
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth' // Optionally, you can use 'auto' or 'instant' for different scrolling behavior
+    });
+
     const params = useParams();
     const blogid = params.blogitemId.substring(1);
 

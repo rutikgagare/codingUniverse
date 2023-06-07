@@ -5,6 +5,7 @@
     margin: 2rem auto;
     border-radius: 0.5rem;
     background-color: white;
+    overflow-wrap: break-word;
 }
 
 .blogItem h2{
@@ -34,7 +35,11 @@
 .blogItem .content{
     padding: 0.5rem;
     margin: 1rem 0;
+}
+
+.blogItem .content{
     overflow-wrap: break-word;
+    hyphens: manual;
 }
 
 .blogItem .content img{
@@ -42,6 +47,14 @@
     display: block;
     margin: 1rem auto;
 }
+
+/* .blogItem h4{
+    padding: 0.3rem 1rem;
+    background-color: rgb(240, 240, 240);
+    border: 1px solid black;
+    width: fit-content;
+    border-radius: 1rem;
+} */
 
 @media screen and (max-width: 600px) {
     .blogItem{
