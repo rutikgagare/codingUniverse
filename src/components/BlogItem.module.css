@@ -91,7 +91,11 @@
     }
 
     .blogItem .content{
-        font-size: 0.9rem;
+        font-size: 1rem;
+    }
+
+    .blogItem title{
+        font-size: 1rem;
     }
     
 }
