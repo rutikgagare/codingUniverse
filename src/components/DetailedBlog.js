@@ -1,10 +1,32 @@
-import React from 'react';
+import React,{useEffect} from 'react';
+import { useDispatch } from 'react-redux';
+import { loginActions } from '../store/loginSlice';
+import { articleActions } from '../store/articleSlice';
+import {auth} from '../config/firebase';
 import Nav from './Nav';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import classes from './BlogItem.module.css';
 
 const DetailedBlog = () => {
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        auth.onAuthStateChanged((user) => {
+          if (user) {
+            dispatch(loginActions.login());
+          }
+        });
+      }, [dispatch]);
+    
+      useEffect(() => {
+        const fetchData = async () => {
+          const response = await fetch('https://codinguniverse-20c51-default-rtdb.firebaseio.com/article.json');
+          const data = await response.json();
+          dispatch(articleActions.replace(data.items));
+        }
+        fetchData();
+      }, [dispatch]);
 
     // Scroll to the top of the page
     window.scrollTo({
@@ -31,14 +53,14 @@ const DetailedBlog = () => {
                     <i class="fas fa-heart"></i>
                 </div>
 
-                <h2>{props.title}</h2>
+                <h2>{props?.title}</h2>
 
                 <div className={classes.details}>
-                    <h3><span>Author Name : </span>{props.author}</h3>
-                    <h3><span>Published on : </span>{props.date}</h3>
+                    <h3><span>Author Name : </span>{props?.author}</h3>
+                    <h3><span>Published on : </span>{props?.date}</h3>
                 </div>
 
-                <div className={classes.content} dangerouslySetInnerHTML={{ __html: props.content }} />
+                <div className={classes.content} dangerouslySetInnerHTML={{ __html: props?.content }} />
             </div>
         </div>
     )
