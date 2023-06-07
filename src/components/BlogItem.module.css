@@ -74,12 +74,24 @@
 @media screen and (max-width: 600px) {
     .blogItem{
         width: 90%;
-        font-size: 1rem;
+    }
+
+    .blogItem h2{
+        font-size: 1.2rem;
     }
 
     .blogItem .details{
+        font-size: 0.9rem;
         display: flex;
         flex-direction: column;
+    }
+
+    .blogItem .details h3{
+        margin: 0.2rem 0;
+    }
+
+    .blogItem .content{
+        font-size: 0.9rem;
     }
     
 }
