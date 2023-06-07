@@ -15,7 +15,7 @@ const Nav = () => {
         <div className={classes.nav}>
             <ul>
                 <li><Link to={'/write'}><i class="fas fa-pen-to-square"></i> Write</Link></li>
-                <li><Link to={'/signup'}><i class="fa-solid fa-user-plus"></i></Link></li>
+                {!user && <li><Link to={'/signup'}><i class="fa-sharp fa-solid fa-user-plus"></i></Link></li>}
                 {user && <li><Link to="/profile"><i class="fa-solid fa-user"></i></Link></li>}
             </ul>
         </div>

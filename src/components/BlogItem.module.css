@@ -6,6 +6,7 @@
     border-radius: 0.5rem;
     background-color: white;
     overflow-wrap: break-word;
+    position: relative;
 }
 
 .blogItem h2{
@@ -55,6 +56,20 @@
     width: fit-content;
     border-radius: 1rem;
 } */
+
+.blogItem .like{
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+}
+
+.like{
+    font-size: 1.2rem;
+}
+
+.like i:hover{
+   color: red; 
+}
 
 @media screen and (max-width: 600px) {
     .blogItem{

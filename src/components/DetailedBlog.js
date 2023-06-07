@@ -26,6 +26,11 @@ const DetailedBlog = () => {
         <div className={classes.main}>
             <Nav></Nav>
             <div className={classes.blogItem}>
+
+                <div className={classes.like}>
+                    <i class="fas fa-heart"></i>
+                </div>
+
                 <h2>{props.title}</h2>
 
                 <div className={classes.details}>
