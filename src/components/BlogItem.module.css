@@ -49,6 +49,10 @@
     margin: 1rem auto;
 }
 
+.blogItem .content a{
+    color: blue;
+}
+
 /* .blogItem h4{
     padding: 0.3rem 1rem;
     background-color: rgb(240, 240, 240);
