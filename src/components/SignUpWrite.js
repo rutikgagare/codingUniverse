@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {useState } from 'react';
 import classes from './SignUp.module.css';
 import { auth, googleProvider } from '../config/firebase';
 import { createUserWithEmailAndPassword, signInWithPopup,updateProfile } from 'firebase/auth';
@@ -32,7 +32,7 @@ const SignUpWrite = () => {
       navigate('/write');
 
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   }
 

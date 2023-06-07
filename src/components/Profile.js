@@ -6,29 +6,39 @@ import { auth } from '../config/firebase';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { loginActions } from '../store/loginSlice';
+import { articleActions } from '../store/articleSlice';
 import { useDispatch } from 'react-redux';
 import { signOut } from 'firebase/auth';
 
 const Profile = () => {
   const dispatch = useDispatch();
+  const user = useSelector(state => state.login.logedIn);
+  const articles = useSelector(state => state.article.items);
 
   useEffect(() => {
-    auth.onAuthStateChanged((user) => {
+    auth?.onAuthStateChanged((user) => {
       if (user) {
         dispatch(loginActions.login());
       }
     });
-  }, []);
+  }, [dispatch]);
 
-  const user = useSelector(state => state.login.logedIn);
-  const articles = useSelector(state => state.article.items);
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch('https://codinguniverse-20c51-default-rtdb.firebaseio.com/article.json');
+      const data = await response.json();
+      dispatch(articleActions.replace(data.items));
+    }
+    fetchData();
+  }, [dispatch]);
   
   const myarticles = articles.filter((item) => {
-    return (item.user == auth?.currentUser?.uid);
+    return (item.user === auth?.currentUser?.uid);
   });
 
   const logoutHandler = async () =>{
     const response = await signOut(auth);
+    console.log(response);
     dispatch(loginActions.logout());
   }
 
@@ -38,8 +48,8 @@ const Profile = () => {
       <div className={classes.profile}>
         <div className={classes.profileDetails}>
           <img src="https://media.geeksforgeeks.org/img-practice/user_web-1598433228.svg" alt="" />
-          {user && <h2>{auth.currentUser.displayName}</h2>}
-          {user && <h3>{auth.currentUser.email}</h3>}
+          {user && <h2>{auth?.currentUser?.displayName}</h2>}
+          {user && <h3>{auth?.currentUser?.email}</h3>}
           <hr></hr>
         </div>
 

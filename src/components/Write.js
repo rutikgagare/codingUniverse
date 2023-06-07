@@ -13,25 +13,33 @@ import Nav from './Nav';
 
 const Write = () => {
 
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    const blogItems = useSelector(state => state.article.items);
+    const user = useSelector(state => state.login.logedIn);
+    
+    const [editorData, setEditorData] = useState('');
+    const [plainText, setPlainText] = useState('');
+    const [title, setTitle] = useState('');
+    const [category, setCategory] = useState('');
+
     useEffect(() => {
         auth.onAuthStateChanged((user) => {
           if (user) {
             dispatch(loginActions.login());
           }
         });
-      }, []);
+      }, [dispatch]);
 
-    const navigate = useNavigate();
-
-    const blogItems = useSelector(state => state.article.items);
-    const user = useSelector(state => state.login.logedIn);
-
-    const dispatch = useDispatch();
-    
-    const [editorData, setEditorData] = useState('');
-    const [plainText, setPlainText] = useState('');
-    const [title, setTitle] = useState('');
-    const [category, setCategory] = useState('');
+      useEffect(() => {
+        const fetchData = async () => {
+          const response = await fetch('https://codinguniverse-20c51-default-rtdb.firebaseio.com/article.json');
+          const data = await response.json();
+          dispatch(articleActions.replace(data.items));
+        }
+        fetchData();
+      }, [dispatch]);
 
     const handleEditorChange = (event, editor) => {
         const data = editor.getData();
@@ -48,7 +56,7 @@ const Write = () => {
 
         // Print the plain text
         setPlainText(text);
-        console.log(plainText);
+        // console.log(plainText);
     };
 
     const addArticleHandler = (event) => {

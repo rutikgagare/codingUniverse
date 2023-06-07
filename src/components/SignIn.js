@@ -18,7 +18,7 @@ const SignIn = () => {
             navigate('/');
 
         } catch (error) {
-            console.log(error);
+            // console.log(error);
         }
     }
     const signInWithGoogleHandler = async () => {

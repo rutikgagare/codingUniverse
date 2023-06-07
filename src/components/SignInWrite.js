@@ -18,10 +18,9 @@ const SignInWrite = () => {
             navigate('/write');
 
         } catch (error) {
-            console.log(error);
+            // console.log(error);
         }
     }
-
 
     const signInWithGoogleHandler = async () => {
         try {
@@ -29,7 +28,7 @@ const SignInWrite = () => {
             navigate('/write');
 
         } catch (error) {
-            console.log(error);
+            // console.log(error);
         }
     }
 

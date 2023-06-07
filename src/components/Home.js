@@ -5,14 +5,11 @@ import Blogs from './Blogs';
 import { auth } from '../config/firebase';
 import { useDispatch } from 'react-redux';
 import { loginActions } from '../store/loginSlice';
-import { useSelector } from 'react-redux';
 import { articleActions } from '../store/articleSlice';
 import classes from './Home.module.css';
-let send = false;
 
 const Home = () => {
 
-  const blogItems = useSelector(state => state.article.items);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -21,19 +18,16 @@ const Home = () => {
         dispatch(loginActions.login());
       }
     });
-  }, []);
+  }, [dispatch]);
 
- 
   useEffect(() => {
-    console.log("in fetchdata",blogItems);
     const fetchData = async () => {
       const response = await fetch('https://codinguniverse-20c51-default-rtdb.firebaseio.com/article.json');
       const data = await response.json();
       dispatch(articleActions.replace(data.items));
     }
     fetchData();
-
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className={classes.home}>

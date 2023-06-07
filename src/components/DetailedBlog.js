@@ -11,7 +11,6 @@ const DetailedBlog = () => {
     const blogItemList = useSelector(state => state.article.items);
 
     const blogItems = blogItemList.filter((item) => {
-        // console.log(item.id," ",blogid);
         return (item.id === blogid);
     });
     const props = blogItems[0];
