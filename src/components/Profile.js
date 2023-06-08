@@ -4,7 +4,7 @@ import UserBlogItem from './UserBlogItem';
 import classes from './Profile.module.css';
 import { auth } from '../config/firebase';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 import { loginActions } from '../store/loginSlice';
 import { articleActions } from '../store/articleSlice';
 import { useDispatch } from 'react-redux';
@@ -13,6 +13,7 @@ let send = false;
 
 const Profile = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const user = useSelector(state => state.login.logedIn);
   const articles = useSelector(state => state?.article?.items);
 
@@ -55,6 +56,7 @@ const Profile = () => {
     const response = await signOut(auth);
     console.log(response);
     dispatch(loginActions.logout());
+    navigate('/');
   }
 
   return (
