@@ -85,7 +85,7 @@ const Write = () => {
             author: auth?.currentUser?.displayName,
             date: formattedDate,
             category: category,
-            likes:[]
+            likes:["abc"]
         }));
 
         setEditorData('');

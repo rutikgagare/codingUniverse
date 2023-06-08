@@ -6,7 +6,7 @@ const Blogs = () => {
     const blogItems = useSelector(state => state.article.items);
     return (
         <div className={classes.blogs}>
-            {   blogItems.map((item) => {
+            { blogItems && blogItems.length !==0 && blogItems.map((item) => {
                     return(<BlogItem key={item.id} id={item.id} title={item.title} content={item.content} plaintext={item.plaintext} date={item.date} author={item.author} category={item.category}></BlogItem>);
                 })
             }

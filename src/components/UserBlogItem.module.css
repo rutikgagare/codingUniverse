@@ -2,15 +2,16 @@
     width: 80%;
     padding: 1rem 2rem;
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
-    margin: 1.5rem auto;
     border-radius: 0.5rem;
     background-color: white;
     overflow-wrap: break-word;
     position: relative;
+    margin: 1rem auto;
 }
 
 .blogItem h2{
-    margin: 2rem 0;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
     font-weight: 600;
     font-size: 1.5rem;
 }
@@ -53,26 +54,19 @@
     color: blue;
 }
 
-/* .blogItem h4{
-    padding: 0.3rem 1rem;
-    background-color: rgb(240, 240, 240);
-    border: 1px solid black;
-    width: fit-content;
-    border-radius: 1rem;
-} */
-
-.blogItem .like{
+.blogItem .options{
     position: absolute;
     top: 1rem;
-    right: 1rem;
+    right: 1.2rem;
+    display: flex;
+    gap: 0.5rem;
 }
 
-.like{
-    font-size: 1.2rem;
-}
-
-.like i:hover{
-   color: red; 
+.blogItem .options i{
+    color: white;
+    padding: 0.5rem;
+    border-radius: 50%;
+    background-color: rgb(73, 112, 195);
 }
 
 @media screen and (max-width: 600px) {

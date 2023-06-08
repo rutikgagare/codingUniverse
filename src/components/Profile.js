@@ -1,6 +1,6 @@
-import React,{useEffect} from 'react';
+import React, { useEffect } from 'react';
 import Nav from './Nav';
-import BlogItem from './BlogItem';
+import UserBlogItem from './UserBlogItem';
 import classes from './Profile.module.css';
 import { auth } from '../config/firebase';
 import { useSelector } from 'react-redux';
@@ -13,7 +13,7 @@ import { signOut } from 'firebase/auth';
 const Profile = () => {
   const dispatch = useDispatch();
   const user = useSelector(state => state.login.logedIn);
-  const articles = useSelector(state => state.article.items);
+  const articles = useSelector(state => state?.article?.items);
 
   useEffect(() => {
     auth?.onAuthStateChanged((user) => {
@@ -24,6 +24,16 @@ const Profile = () => {
   }, [dispatch]);
 
   useEffect(() => {
+    const sendData = async () => {
+      await fetch('https://codinguniverse-20c51-default-rtdb.firebaseio.com/article.json', {
+        method: "PUT",
+        body: JSON.stringify({ items: articles })
+      })
+    }
+    sendData();
+  }, [articles]);
+
+  useEffect(() => {
     const fetchData = async () => {
       const response = await fetch('https://codinguniverse-20c51-default-rtdb.firebaseio.com/article.json');
       const data = await response.json();
@@ -31,12 +41,12 @@ const Profile = () => {
     }
     fetchData();
   }, [dispatch]);
-  
-  const myarticles = articles.filter((item) => {
-    return (item.user === auth?.currentUser?.uid);
+
+  const myarticles = articles?.filter((item) => {
+    return (item.user === auth.currentUser.uid);
   });
 
-  const logoutHandler = async () =>{
+  const logoutHandler = async () => {
     const response = await signOut(auth);
     console.log(response);
     dispatch(loginActions.logout());
@@ -55,20 +65,24 @@ const Profile = () => {
 
         <div className={classes.myBlogs}>
           <h2 className={classes.heading}>Your Articles</h2>
-          {myarticles.length !== 0 && myarticles.map((item) => {
-            return (<BlogItem key={item.id} id={item.id} title={item.title} content={item.content} plaintext={item.plaintext} date={item.date} author={item.author}></BlogItem>);
-          })
+          {myarticles.length !== 0 &&
+            <div className={classes.blogs}>
+              {myarticles.map((item) => {
+                return (<UserBlogItem key={item.id} id={item.id} title={item.title} content={item.content} plaintext={item.plaintext} date={item.date} author={item.author} category={item.category}></UserBlogItem>);
+              })
+              }
+            </div>
           }
-          {myarticles.length === 0 && 
+          {myarticles.length === 0 &&
             <div className={classes.message}>
               <h3>You haven't contributed any 'Articles' yet!</h3>
-              <h4>You may use codingUniverse <Link to = "/write">WRITE</Link> portal to help other.</h4>
+              <h4>You may use codingUniverse <Link to="/write">WRITE</Link> portal to help other.</h4>
             </div>
           }
         </div>
-        
+
         <div className={classes.logout}>
-            {user && <button onClick={logoutHandler}>Logout <i class="fas fa-right-from-bracket"></i></button>}
+          {user && <button onClick={logoutHandler}>Logout <i class="fas fa-right-from-bracket"></i></button>}
         </div>
       </div>
     </div>

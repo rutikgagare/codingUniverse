@@ -59,6 +59,14 @@
     color: rgb(35, 77, 193);
 }
 
+.blogs{
+    width: 100%;
+    margin: auto;
+    padding: 2rem;
+    gap: 1rem;
+}
+
+
 .logout{
     position: absolute;
     top: 1rem;
@@ -88,4 +96,10 @@
         margin: 0.5rem;
         font-size: 1rem;
     }
+
+    .blogs {
+        width: 100%;
+        padding: 0.5rem;
+        gap: 1rem 0rem;
+      }  
 }

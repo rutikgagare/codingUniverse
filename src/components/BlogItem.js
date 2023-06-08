@@ -9,6 +9,7 @@ const BlogItem = (props) => {
     navigate(`/:${props.id}`)
   }
 
+
   return (
     <div className={classes.blogItem} onClick={displayDetailedBlog}>
       

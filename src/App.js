@@ -7,6 +7,7 @@ import DetailedBlog from './components/DetailedBlog';
 import Profile from './components/Profile';
 import SignInWrite from './components/SignInWrite';
 import SignUpWrite from './components/SignUpWrite';
+import EditBlog from './components/EditBlog';
 import { RouterProvider,createBrowserRouter } from 'react-router-dom';
 import './App.css';
 
@@ -19,7 +20,8 @@ const router = createBrowserRouter([
   { path: '/signupwrite', element: <SignUpWrite></SignUpWrite>},
   { path: '/write', element: <Write></Write> },
   { path: '/profile', element: <Profile></Profile> },
-  { path: '/:blogitemId', element: <DetailedBlog/> }
+  { path: '/:blogitemId', element: <DetailedBlog/> },
+  { path: 'profile/:editblogitemId', element: <EditBlog/> },
 ]);
 
 const App = () => {
