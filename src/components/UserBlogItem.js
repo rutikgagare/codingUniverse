@@ -3,7 +3,6 @@ import classes from './UserBlogItem.module.css';
 import { useDispatch } from 'react-redux';
 import { articleActions } from '../store/articleSlice';
 import { useNavigate } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const UserBlogItem = (props) => {
@@ -20,7 +19,6 @@ const UserBlogItem = (props) => {
 
   return (
     <div className={classes.blogItem}>
-      <ToastContainer></ToastContainer>
       <div className={classes.options}>
         <i onClick={editArticleHandler} class="fas fa-pen"></i>
         <i onClick={deleteArticleHandler} class="fas fa-trash"></i>
