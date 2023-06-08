@@ -9,6 +9,7 @@ import { loginActions } from '../store/loginSlice';
 import { articleActions } from '../store/articleSlice';
 import { useDispatch } from 'react-redux';
 import { signOut } from 'firebase/auth';
+let send = false;
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -30,6 +31,10 @@ const Profile = () => {
         body: JSON.stringify({ items: articles })
       })
     }
+    if(send === false){
+      send = true;
+      return;
+    }
     sendData();
   }, [articles]);
 
@@ -43,7 +48,7 @@ const Profile = () => {
   }, [dispatch]);
 
   const myarticles = articles?.filter((item) => {
-    return (item.user === auth.currentUser.uid);
+    return (item.user === auth?.currentUser?.uid);
   });
 
   const logoutHandler = async () => {

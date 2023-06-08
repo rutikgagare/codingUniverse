@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux';
 import { loginActions } from '../store/loginSlice';
 import { articleActions } from '../store/articleSlice';
 import classes from './Home.module.css';
+import { ToastContainer } from 'react-toastify';
 
 const Home = () => {
 
@@ -34,6 +35,7 @@ const Home = () => {
       <Nav></Nav>
       <Main></Main>
       <Blogs></Blogs>
+      <ToastContainer></ToastContainer>
     </div>
   )
 }

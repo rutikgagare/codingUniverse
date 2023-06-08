@@ -11,7 +11,6 @@ import EditBlog from './components/EditBlog';
 import { RouterProvider,createBrowserRouter } from 'react-router-dom';
 import './App.css';
 
-
 const router = createBrowserRouter([
   { path: '/', element: <Home></Home>},
   { path: '/signin', element: <SignIn></SignIn> },

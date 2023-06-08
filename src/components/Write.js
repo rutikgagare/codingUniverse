@@ -10,6 +10,8 @@ import { v4 as uuid } from 'uuid';
 import { useNavigate } from 'react-router-dom';
 import { loginActions } from '../store/loginSlice';
 import Nav from './Nav';
+import { ToastContainer,toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Write = () => {
 
@@ -40,6 +42,13 @@ const Write = () => {
         }
         fetchData();
     }, [dispatch]);
+
+    const notify = (message) => {
+        toast.success(message, {
+            position: toast.POSITION.TOP_RIGHT,
+            autoClose: 2000,
+        });
+    }
 
     const handleEditorChange = (event, editor) => {
         const data = editor.getData();
@@ -85,8 +94,10 @@ const Write = () => {
             author: auth?.currentUser?.displayName,
             date: formattedDate,
             category: category,
-            likes:["abc"]
+            likes: ["abc"]
         }));
+
+        notify("Article published Successfully");
 
         setEditorData('');
         setTitle('');
@@ -110,6 +121,7 @@ const Write = () => {
 
     return (
         <>
+            <ToastContainer></ToastContainer>
             <Nav></Nav>
             {user && <div className={classes.main}>
 

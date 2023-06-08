@@ -35,7 +35,7 @@ const DetailedBlog = () => {
     });
 
     const params = useParams();
-    const blogid = params.blogitemId.substring(1);
+    const blogid = params?.blogitemId?.substring(1);
 
     const blogItemList = useSelector(state => state.article.items);
 

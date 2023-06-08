@@ -9,6 +9,8 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { loginActions } from '../store/loginSlice';
 import { useParams } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Nav from './Nav';
 
 const EditBlog = () => {
@@ -28,7 +30,7 @@ const EditBlog = () => {
   const blogItem = blogItems[0];
 
   const [editorData, setEditorData] = useState(blogItem?.content);
-  const [plainText, setPlainText] = useState(blogItem?.plainText);
+  const [plainText, setPlainText] = useState(blogItem?.plaintext);
   const [title, setTitle] = useState(blogItem?.title);
   const [category, setCategory] = useState(blogItem?.category);
 
@@ -49,6 +51,12 @@ const EditBlog = () => {
     fetchData();
   }, [dispatch]);
 
+  const notify = (message) => {
+    toast.success(message, {
+      position: toast.POSITION.TOP_RIGHT,
+      autoClose: 2000,
+    });
+  }
 
   const handleEditorChange = (event, editor) => {
     const data = editor.getData();
@@ -93,6 +101,8 @@ const EditBlog = () => {
       category: category,
     }));
 
+    notify("Article Updated Successfully");
+
     setEditorData('');
     setTitle('');
     setPlainText('');
@@ -115,6 +125,8 @@ const EditBlog = () => {
 
   return (
     <>
+      <ToastContainer></ToastContainer>
+
       <Nav></Nav>
       {user && <div className={classes.main}>
 
