@@ -54,7 +54,6 @@ const Profile = () => {
 
   const logoutHandler = async () => {
     const response = await signOut(auth);
-    console.log(response);
     dispatch(loginActions.logout());
     navigate('/');
   }

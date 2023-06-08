@@ -18,11 +18,20 @@ const EditBlog = () => {
   const params = useParams();
   const blogid = params?.editblogitemId?.substring(1);
 
-  const blogItemList = useSelector(state => state.article.items);
-  const user = useSelector(state => state?.login?.logedIn);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
+  const user = useSelector(state => state?.login?.logedIn);
+  const blogItemList = useSelector(state => state.article.items);
+  
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch('https://codinguniverse-20c51-default-rtdb.firebaseio.com/article.json');
+      const data = await response.json();
+      dispatch(articleActions.replace(data.items));
+    }
+    fetchData();
+  }, [dispatch]);
+  
 
   const blogItems = blogItemList.filter((item) => {
     return (item.id === blogid);
@@ -40,15 +49,6 @@ const EditBlog = () => {
         dispatch(loginActions.login());
       }
     });
-  }, [dispatch]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch('https://codinguniverse-20c51-default-rtdb.firebaseio.com/article.json');
-      const data = await response.json();
-      dispatch(articleActions.replace(data.items));
-    }
-    fetchData();
   }, [dispatch]);
 
   const notify = (message) => {
@@ -75,7 +75,6 @@ const EditBlog = () => {
 
     // Print the plain text
     setPlainText(text);
-    console.log(plainText);
   };
 
   const editArticleHandler = (event) => {
@@ -115,13 +114,14 @@ const EditBlog = () => {
 
   useEffect(() => {
     const sendData = async () => {
+
       await fetch('https://codinguniverse-20c51-default-rtdb.firebaseio.com/article.json', {
         method: "PUT",
-        body: JSON.stringify({ items: blogItems })
+        body: JSON.stringify({ items: blogItemList })
       })
     }
     sendData();
-  }, [blogItems]);
+  }, [blogItemList]);
 
   return (
     <>

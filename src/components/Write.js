@@ -67,7 +67,6 @@ const Write = () => {
 
         // Print the plain text
         setPlainText(text);
-        console.log(plainText);
     };
 
     const addArticleHandler = (event) => {
@@ -94,7 +93,6 @@ const Write = () => {
             author: auth?.currentUser?.displayName,
             date: formattedDate,
             category: category,
-            likes: ["abc"]
         }));
 
         notify("Article published Successfully");

@@ -18,15 +18,13 @@ const articleSlice = createSlice({
             state.items = updatedItems;
         },
         editArticle:(state,action)=>{
-            const updatedItems = state.items.map((item)=>{
+            state.items = state.items.map((item)=>{
                 if(item.id === action.payload.id){
                     return action.payload;
-                }else{
-                    return item;
                 }
+                return item;
             });
-            state.items = updatedItems;
-            console.log(updatedItems);
+            console.log(state.items);
         },
         replace:(state,action)=>{
             state.items = action.payload;
