@@ -1,8 +1,8 @@
 .profile{
     position: relative;
     width: 80%;
-    /* border: 2px solid green;
-    background-color: whitesmoke; */
+    /* border: 2px solid green; */
+    background-color: whitesmoke;
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
     margin: 2rem auto;
     padding: 1rem;
@@ -79,11 +79,15 @@
     outline: none;
     border: none;
     border-radius: 0.3rem;
-    background-color: rgb(73, 112, 195);
+    background-color: #1292EE;
     color: white;
     display: flex;
     gap: 0.5rem;
     align-items: center;
+}
+
+.logout button:hover{
+    background-color: #0077CC;
 }
 
 @media screen and (max-width: 600px) {

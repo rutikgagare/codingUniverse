@@ -1,10 +1,10 @@
 .logo h2{
     font-weight: 600;
-    color:blue;
+    color:black;
 }
 
 .logo h2 i{
-    color: black;
+    color: #0077CC;
 }
 
 .navbar{

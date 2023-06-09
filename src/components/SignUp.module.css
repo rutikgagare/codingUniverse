@@ -39,9 +39,13 @@
     outline: none;
     border: none;
     border-radius: 0.5rem;
-    background-color: rgb(73, 112, 195);
+    background-color: #1292EE;
     color: white;
     font-size: 1rem;
+}
+
+.form button:hover{
+    background-color: #0077CC;
 }
 
 .form span{
