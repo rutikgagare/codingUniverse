@@ -1,7 +1,7 @@
 
 .home_image{
-    background-color: rgb(48, 53, 46);
-    background-image: url('https://images.pexels.com/photos/1025469/pexels-photo-1025469.jpeg?auto=compress&cs=tinysrgb&w=600');
+    background-color: rgb(8, 138, 158);
+    /* background-image: url('https://images.pexels.com/photos/1025469/pexels-photo-1025469.jpeg?auto=compress&cs=tinysrgb&w=600'); */
     width: 100%;
     margin: auto;
     min-height: 25rem;
@@ -24,7 +24,7 @@
     padding: 2rem;
     border-radius: 0.5rem;
     color: white;
-    background: rgba(0, 0,0, 0.7);
+    background: rgba(0, 0,0, 0.5);
 }
 
 .main_content h2{
