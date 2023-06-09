@@ -1,5 +1,6 @@
 
 .loginIssue{
+    background-color: white;
     width: 50%;
     margin: 2rem auto;
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
@@ -122,6 +123,6 @@ form label{
     }
 
     .loginIssue{
-        width: 90%;
+        width: 95%;
     }
 }
