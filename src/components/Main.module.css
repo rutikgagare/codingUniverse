@@ -1,13 +1,16 @@
 
 .home_image{
     background-color: rgb(48, 53, 46);
-    /* background-image: url(''); */
+    background-image: url('https://images.pexels.com/photos/1025469/pexels-photo-1025469.jpeg?auto=compress&cs=tinysrgb&w=600');
     width: 100%;
     margin: auto;
     min-height: 25rem;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: 50% 50%;
+    /* background-attachment: fixed; */
+    /* background-size: 100% 100%; */
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -21,6 +24,7 @@
     padding: 2rem;
     border-radius: 0.5rem;
     color: white;
+    background: rgba(0, 0,0, 0.7);
 }
 
 .main_content h2{
