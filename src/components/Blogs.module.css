@@ -16,14 +16,15 @@
   gap: 0.5rem;
   border: 2px solid grey;
   border-radius: 0.5rem;
+  background-color: #dee8fd;
 }
 
 .tags span{
   font-size: 0.9rem;
   font-weight: 400;
   padding: 0.5rem 1rem;
-  border: 2px solid #0077CC; 
-  border-radius: 1rem;
+  border: 2px solid #0080dc; 
+  border-radius: 0.7rem;
 }
 
 .active{
@@ -43,10 +44,10 @@
     .tags{
       width: 95%;
       padding: 1rem;
-      justify-content: center;
     }
 
     .tags span{
+      padding: 0.5rem 0.7rem;
       font-weight: 0.7rem;
     }
 }
