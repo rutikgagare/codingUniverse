@@ -10,7 +10,7 @@ import { v4 as uuid } from 'uuid';
 import { useNavigate } from 'react-router-dom';
 import { loginActions } from '../store/loginSlice';
 import Nav from './Nav';
-import { ToastContainer,toast } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Write = () => {
@@ -24,7 +24,18 @@ const Write = () => {
     const [editorData, setEditorData] = useState('');
     const [plainText, setPlainText] = useState('');
     const [title, setTitle] = useState('');
-    const [category, setCategory] = useState('');
+    const [selectedTags, setSelectedTags] = useState([]);
+
+    const tagsData = [
+        { id: 1, name: 'HTML' },
+        { id: 2, name: 'CSS' },
+        { id: 3, name: 'JavaScript' },
+        { id: 4, name: 'React' },
+        { id: 5, name: 'C++' },
+        { id: 6, name: 'DSA' },
+        { id: 7, name: 'Front-end' },
+        { id: 8, name: 'Rules' },
+    ];
 
     useEffect(() => {
         auth.onAuthStateChanged((user) => {
@@ -69,6 +80,18 @@ const Write = () => {
         setPlainText(text);
     };
 
+    const redirecToRegister = () => {
+        navigate('/signupwrite');
+    }
+    // Handler for selecting/deselecting a tag
+    const handleTagSelection = (tagId) => {
+        if (selectedTags.includes(tagId)) {
+            setSelectedTags(selectedTags.filter((id) => id !== tagId));
+        } else {
+            setSelectedTags([...selectedTags, tagId]);
+        }
+    };
+
     const addArticleHandler = (event) => {
         event.preventDefault();
 
@@ -92,7 +115,7 @@ const Write = () => {
             user: auth?.currentUser?.uid,
             author: auth?.currentUser?.displayName,
             date: formattedDate,
-            category: category,
+            tags:selectedTags
         }));
 
         notify("Article published Successfully");
@@ -100,12 +123,9 @@ const Write = () => {
         setEditorData('');
         setTitle('');
         setPlainText('');
-        setCategory('');
+        setSelectedTags([]);
     }
 
-    const redirecToRegister = () => {
-        navigate('/signupwrite');
-    }
 
     useEffect(() => {
         const sendData = async () => {
@@ -117,26 +137,12 @@ const Write = () => {
         sendData();
     }, [blogItems]);
 
+
     return (
         <>
             <ToastContainer></ToastContainer>
             <Nav></Nav>
             {user && <div className={classes.main}>
-
-                {/* <div className={classes.rules}>
-                    <h3> Rules :</h3>
-
-                    <p> 1. Stay focused: Ensure that your article stays on topic and focuses on the technical subject matter. Avoid including unrelated or extraneous information.</p>
-                    <p>2. Be clear and concise: Write in a clear and concise manner to make your article easily understandable. </p>
-                    <p>3. Provide examples and code snippets: Whenever possible, include relevant examples and code snippets to illustrate concepts or demonstrate solutions. This helps readers understand and apply the information effectively.</p>
-                    <p>4. Cite your sources: If you are referencing information, code snippets, or ideas from other sources, provide proper attribution and cite your references. This promotes transparency and gives credit to the original authors or sources.</p>
-                    <p>5. Be accurate and up-to-date: Ensure that the information you provide is accurate and up-to-date. </p>
-                    <p>6. Follow formatting guidelines: Adhere to any formatting guidelines or styles provided by the platform.</p>
-                    <p>7. Respect copyright and licensing: Do not copy and paste content from other sources without permission or proper licensing.</p>
-
-                    <h4> Remember, these rules are meant to guide users in creating high-quality articles that provide value to the readers. By following these guidelines, users can contribute to a positive and enriching experience within the coding community.</h4>
-                    <h3>Happy writing and sharing knowledge in the Coding Universe! 🚀🌌</h3>
-                </div> */}
 
                 <form onSubmit={addArticleHandler}>
                     <div className={classes.write}>
@@ -157,19 +163,18 @@ const Write = () => {
 
                     <div className={classes.postDetails}>
 
-                        <label htmlFor="category">Category</label>
-                        <select name="category" id='category' onChange={(event) => { setCategory(event.target.value) }} required>
-                            <option value="">default</option>
-                            <option value="Programming">Programming</option>
-                            <option value="DSA">DSA</option>
-                            <option value="C++ Programming">C++ Programming</option>
-                            <option value="Python">Python</option>
-                            <option value="Javascript">Javascript</option>
-                            <option value="React">React</option>
-                            <option value="Web Development">Web Development</option>
-                            <option value="Frontend-development">Frontend-development</option>
-                            <option value="Github">Github</option>
-                        </select>
+                        <div className={classes.tags}>
+                            <label htmlFor="">Select the bes fit tags for your article</label>
+                            {tagsData.map((tag) => (
+                                <span
+                                    key={tag.id}
+                                    onClick={() => handleTagSelection(tag.id)}
+                                    className={`${selectedTags.includes(tag.id) ? classes.active : ''}`}
+                                >
+                                    {tag.name}
+                                </span>
+                            ))}
+                        </div>
 
                         <button type='submit'>Publish</button>
                     </div>

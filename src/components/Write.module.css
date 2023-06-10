@@ -59,7 +59,7 @@
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
     border-radius: 0.5rem;
     padding: 1rem;
-    max-height: 12rem;
+    max-height: 22.5rem;
 }
 
 .write .title{
@@ -107,6 +107,31 @@ form label{
     color: black;
     margin-bottom: 1rem;
 }
+
+.tags{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+    margin: auto;
+    padding: 1rem;
+    gap: 0.5rem;
+  }
+  
+  .tags span{
+    font-size: 0.9rem;
+    font-weight: 400;
+    padding: 0.5rem 1rem;
+    border: 2px solid #0077CC; 
+    border-radius: 1rem;
+  }
+
+  .active{
+    background-color: rgb(43, 149, 206);
+    border: none;
+    outline: none;
+    color: white;
+  }
 
 @media screen and (max-width: 600px) {
     form{
