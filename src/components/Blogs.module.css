@@ -16,7 +16,7 @@
   gap: 0.5rem;
   border: 2px solid grey;
   border-radius: 0.5rem;
-  background-color: #dee8fd;
+  background-color: white;
 }
 
 .tags span{
@@ -42,7 +42,7 @@
     }
 
     .tags{
-      width: 95%;
+      width: 90%;
       padding: 1rem;
     }
 
