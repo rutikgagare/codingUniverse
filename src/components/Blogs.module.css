@@ -38,4 +38,8 @@
       gap: 1rem 0rem;
     }
 
+    .tags{
+      width: 100%;
+      padding: 1rem;
+    }
 }

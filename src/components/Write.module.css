@@ -150,4 +150,10 @@ form label{
     .loginIssue{
         width: 95%;
     }
+
+    .tags{
+        width: 100%;
+        padding: 1rem;
+    }
+      
 }
