@@ -43,5 +43,10 @@
     .tags{
       width: 95%;
       padding: 1rem;
+      justify-content: center;
+    }
+
+    .tags span{
+      font-weight: 0.7rem;
     }
 }
