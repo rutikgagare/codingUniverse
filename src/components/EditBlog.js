@@ -22,7 +22,7 @@ const EditBlog = () => {
   const dispatch = useDispatch();
   const user = useSelector(state => state?.login?.logedIn);
   const blogItemList = useSelector(state => state.article.items);
-  
+
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch('https://codinguniverse-20c51-default-rtdb.firebaseio.com/article.json');
@@ -31,7 +31,7 @@ const EditBlog = () => {
     }
     fetchData();
   }, [dispatch]);
-  
+
 
   const blogItems = blogItemList.filter((item) => {
     return (item.id === blogid);
@@ -41,7 +41,19 @@ const EditBlog = () => {
   const [editorData, setEditorData] = useState(blogItem?.content);
   const [plainText, setPlainText] = useState(blogItem?.plaintext);
   const [title, setTitle] = useState(blogItem?.title);
-  const [category, setCategory] = useState(blogItem?.category);
+  const [selectedTags, setSelectedTags] = useState(blogItem?.tags);
+
+  const tagsData = [
+    { id: 1, name: 'HTML' },
+    { id: 2, name: 'CSS' },
+    { id: 3, name: 'JavaScript' },
+    { id: 4, name: 'React' },
+    { id: 5, name: 'C++' },
+    { id: 6, name: 'DSA' },
+    { id: 7, name: 'Front-end' },
+    { id: 8, name: 'Rules' },
+  ];
+
 
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
@@ -77,6 +89,15 @@ const EditBlog = () => {
     setPlainText(text);
   };
 
+  // Handler for selecting/deselecting a tag
+  const handleTagSelection = (tagId) => {
+    if (selectedTags.includes(tagId)) {
+      setSelectedTags(selectedTags.filter((id) => id !== tagId));
+    } else {
+      setSelectedTags([...selectedTags, tagId]);
+    }
+  };
+
   const editArticleHandler = (event) => {
     event.preventDefault();
 
@@ -97,7 +118,7 @@ const EditBlog = () => {
       user: auth?.currentUser?.uid,
       author: auth?.currentUser?.displayName,
       date: formattedDate,
-      category: category,
+      tags:selectedTags
     }));
 
     notify("Article Updated Successfully");
@@ -105,7 +126,7 @@ const EditBlog = () => {
     setEditorData('');
     setTitle('');
     setPlainText('');
-    setCategory('');
+    setSelectedTags([]);
   }
 
   const redirecToRegister = () => {
@@ -149,19 +170,18 @@ const EditBlog = () => {
 
           <div className={classes.postDetails}>
 
-            <label htmlFor="category">Category</label>
-            <select name="category" id='category' value={category} onChange={(event) => { setCategory(event.target.value) }} required>
-              <option value="">default</option>
-              <option value="Programming">Programming</option>
-              <option value="DSA">DSA</option>
-              <option value="C++ Programming">C++ Programming</option>
-              <option value="Python">Python</option>
-              <option value="Javascript">Javascript</option>
-              <option value="React">React</option>
-              <option value="Web Development">Web Development</option>
-              <option value="Frontend-development">Frontend-development</option>
-              <option value="Github">Github</option>
-            </select>
+            <div className={classes.tags}>
+              <label htmlFor="">Select the bes fit tags for your article</label>
+              {tagsData.map((tag) => (
+                <span
+                  key={tag.id}
+                  onClick={() => handleTagSelection(tag.id)}
+                  className={`${selectedTags.includes(tag.id) ? classes.active : ''}`}
+                >
+                  {tag.name}
+                </span>
+              ))}
+            </div>
 
             <button type='submit'>Submit Changes</button>
           </div>
