@@ -3,22 +3,25 @@
   margin: auto;
   padding: 2rem;
   gap: 1rem;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px;
 }
 
 .search {
   margin: auto;
-  margin-top: 1rem;
+  margin-top: 2rem;
   width: 80%;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1rem;
+  padding: 1rem 0;
   gap: 1rem;
 }
 
 .search input {
   padding: 0.5rem 1rem;
-  width: 75%;
+  width: 80%;
   border-radius: 0.6rem;
   border: none;
   outline: none;
@@ -28,7 +31,7 @@
 
 .search button {
   padding: 0.5rem 1rem;
-  width: 25%;
+  width: 20%;
   border-radius: 0.6rem;
   border: none;
   outline: none;
@@ -51,6 +54,8 @@
   padding: 1rem;
   gap: 0.5rem;
   border-radius: 0.5rem;
+  border: 1px solid grey;
+  background-color: whitesmoke;
 }
 
 .tags span {
@@ -88,5 +93,13 @@
   .tags span {
     padding: 0.5rem 0.7rem;
     font-weight: 0.7rem;
+  }
+
+  .search input{
+    width: 70%;
+  }
+
+  .search :no-button{
+    width: 30%;
   }
 }

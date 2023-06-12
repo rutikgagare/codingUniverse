@@ -14,6 +14,13 @@ const Blogs = () => {
         setDisplayContent(blogItems);
     },[blogItems])
 
+    useEffect(()=>{
+        const articleContainer = document.querySelector('.blogs');
+        if(articleContainer && displayContent.length !== 0) {
+            articleContainer.scrollTop = 0;
+        }
+    },[displayContent]);
+
 
     const tagsData = [
         { id: 1, name: 'HTML' },
