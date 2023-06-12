@@ -27,7 +27,7 @@ h3 {
 
 .main {
   width: 90%;
-  margin: 2rem auto;
+  margin: 1rem auto;
   padding: 1rem;
 }
 
@@ -58,7 +58,7 @@ h3 {
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
   border-radius: 0.5rem;
   padding: 1rem;
-  max-height: 35rem;
+  max-height: 29rem;
 }
 
 .write .title {
@@ -132,6 +132,22 @@ form label {
   padding: 1rem;
   margin: auto;
   /* border: 1px solid red; */
+}
+
+.preview button{
+  padding: 0.5rem;
+  border: none;
+  outline: none;
+  background-color: rgb(43, 149, 206);
+  color: white;
+  border-radius: 0.2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.preview button:hover{
+  background-color: #0077CC;
 }
 
 @media screen and (max-width: 600px) {

@@ -33,7 +33,6 @@ const EditBlog = () => {
     fetchData();
   }, [dispatch]);
 
-
   const blogItems = blogItemList.filter((item) => {
     return (item.id === blogid);
   });
@@ -114,7 +113,7 @@ const EditBlog = () => {
 
   // Handler for selecting/deselecting a tag
   const handleTagSelection = (tagId) => {
-    if (selectedTags.includes(tagId)) {
+    if (selectedTags?.includes(tagId)) {
       setSelectedTags(selectedTags.filter((id) => id !== tagId));
     } else {
       setSelectedTags([...selectedTags, tagId]);
@@ -192,7 +191,7 @@ const EditBlog = () => {
                 <span
                   key={tag.id}
                   onClick={() => handleTagSelection(tag.id)}
-                  className={`${selectedTags.includes(tag.id) ? classes.active : ''}`}
+                  className={`${selectedTags?.includes(tag.id) ? classes.active : ''}`}
                 >
                   {tag.name}
                 </span>
@@ -200,7 +199,6 @@ const EditBlog = () => {
             </div>
 
             <button type='submit'>Submit Changes</button>
-            <button onClick={previewHandler}>Check Preview</button>
           </div>
         </form>
       </div>
@@ -209,6 +207,8 @@ const EditBlog = () => {
       {/* preview */}
       {user &&
         <div className={classes.preview}>
+          <button onClick={previewHandler}>Check Preview</button>
+
           {showPreview && <Preview title={title} content={editorData} date={todaysDate}></Preview>}
         </div>
       }

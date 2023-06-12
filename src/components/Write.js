@@ -191,7 +191,6 @@ const Write = () => {
                         </div>
 
                         <button type='submit'>Publish</button>
-                        <button onClick={previewHandler}>Check Preview</button>
                     </div>
 
                 </form >
@@ -201,6 +200,7 @@ const Write = () => {
             {/* preview */}
             {user &&
                 <div className={classes.preview}>
+                    <button onClick={previewHandler}>Check Preview</button>
                     {showPreview && <Preview title={title} content={editorData} date={todaysDate}></Preview>}
                 </div>
             }
