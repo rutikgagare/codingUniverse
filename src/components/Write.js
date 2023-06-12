@@ -12,6 +12,7 @@ import { loginActions } from '../store/loginSlice';
 import Nav from './Nav';
 import Preview from './Preview1';
 import { ToastContainer, toast } from 'react-toastify';
+import Loader from './Loader';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Write = () => {
@@ -27,8 +28,10 @@ const Write = () => {
     const [title, setTitle] = useState('');
     const [selectedTags, setSelectedTags] = useState([]);
     const [todaysDate, setTodaysDate] = useState('');
+    const [loading, setLoading] = useState(false);
 
-    const [showPreview,setShowPreview] = useState({name:"Open Preview",status:false});
+
+    const [showPreview, setShowPreview] = useState({ name: "Open Preview", status: false });
 
     const tagsData = [
         { id: 1, name: 'HTML' },
@@ -57,11 +60,21 @@ const Write = () => {
     }, [])
 
     useEffect(() => {
+        setLoading(true);
+
         auth.onAuthStateChanged((user) => {
             if (user) {
                 dispatch(loginActions.login());
             }
         });
+
+        const timer = setTimeout(() => {
+            setLoading(false);
+        }, 1000);
+
+        return () => {
+            clearTimeout(timer);
+        };
     }, [dispatch]);
 
     useEffect(() => {
@@ -80,12 +93,12 @@ const Write = () => {
         });
     }
 
-    const previewHandler = () =>{
-        if(showPreview.status == false){
-            setShowPreview({name:"Close Preview",status:true});
+    const previewHandler = () => {
+        if (showPreview.status === false) {
+            setShowPreview({ name: "Close Preview", status: true });
         }
-        else{
-            setShowPreview({name:"Open Preview",status:false});
+        else {
+            setShowPreview({ name: "Open Preview", status: false });
         }
     }
 
@@ -159,7 +172,8 @@ const Write = () => {
 
 
     return (
-        <>
+        <>  
+            {loading && <Loader></Loader>}
             <ToastContainer></ToastContainer>
             <Nav></Nav>
             {user && <div className={classes.main}>

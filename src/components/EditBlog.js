@@ -13,16 +13,37 @@ import { ToastContainer, toast } from 'react-toastify';
 import Preview from './Preview1';
 import 'react-toastify/dist/ReactToastify.css';
 import Nav from './Nav';
+import Loader from './Loader';
 
 const EditBlog = () => {
 
+  
   const params = useParams();
   const blogid = params?.editblogitemId?.substring(1);
-
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const user = useSelector(state => state?.login?.logedIn);
   const blogItemList = useSelector(state => state.article.items);
+  const [loading,setLoading] = useState(false);
+  
+  useEffect(() => {
+    setLoading(true);
+
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        dispatch(loginActions.login());
+      }
+    });
+
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+
+    return () => {
+      clearTimeout(timer);
+    };
+
+  }, [dispatch]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -44,7 +65,6 @@ const EditBlog = () => {
   const [selectedTags, setSelectedTags] = useState(blogItem?.tags);
   const [todaysDate, setTodaysDate] = useState('');
   const [showPreview, setShowPreview] = useState(false);
-
 
   const tagsData = [
     { id: 1, name: 'HTML' },
@@ -71,15 +91,6 @@ const EditBlog = () => {
     const formattedDate = currentDate.toLocaleDateString(undefined, options);
     setTodaysDate(formattedDate);
   }, [])
-
-
-  useEffect(() => {
-    auth.onAuthStateChanged((user) => {
-      if (user) {
-        dispatch(loginActions.login());
-      }
-    });
-  }, [dispatch]);
 
   const notify = (message) => {
     toast.success(message, {
@@ -161,9 +172,11 @@ const EditBlog = () => {
 
   return (
     <>
-      <ToastContainer></ToastContainer>
+      {loading && <Loader></Loader>}
 
+      <ToastContainer></ToastContainer>
       <Nav></Nav>
+
       {user && <div className={classes.main}>
 
         <form onSubmit={editArticleHandler}>

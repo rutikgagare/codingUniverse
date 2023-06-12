@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState,useEffect } from 'react';
 import Nav from './Nav';
 import UserBlogItem from './UserBlogItem';
 import classes from './Profile.module.css';
@@ -9,6 +9,7 @@ import { loginActions } from '../store/loginSlice';
 import { articleActions } from '../store/articleSlice';
 import { useDispatch } from 'react-redux';
 import { signOut } from 'firebase/auth';
+import Loader from './Loader';
 let send = false;
 
 const Profile = () => {
@@ -16,13 +17,25 @@ const Profile = () => {
   const navigate = useNavigate();
   const user = useSelector(state => state.login.logedIn);
   const articles = useSelector(state => state?.article?.items);
+  const [loading,setLoading] = useState(false);
 
   useEffect(() => {
+    setLoading(true);
+
     auth?.onAuthStateChanged((user) => {
       if (user) {
         dispatch(loginActions.login());
       }
     });
+
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+
+    return () => {
+      clearTimeout(timer);
+    };
+
   }, [dispatch]);
 
   useEffect(() => {
@@ -60,6 +73,7 @@ const Profile = () => {
 
   return (
     <div>
+      {loading && <Loader></Loader>}
       <Nav></Nav>
       <div className={classes.profile}>
         <div className={classes.profileDetails}>

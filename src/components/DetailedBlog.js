@@ -1,69 +1,81 @@
-import React,{useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { loginActions } from '../store/loginSlice';
 import { articleActions } from '../store/articleSlice';
-import {auth} from '../config/firebase';
+import { auth } from '../config/firebase';
 import Nav from './Nav';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import classes from './BlogItem.module.css';
+import Loader from './Loader';
 
 const DetailedBlog = () => {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  const [loading, setLoading] = true;
 
-    useEffect(() => {
-        auth.onAuthStateChanged((user) => {
-          if (user) {
-            dispatch(loginActions.login());
-          }
-        });
-      }, [dispatch]);
-    
-      useEffect(() => {
-        const fetchData = async () => {
-          const response = await fetch('https://codinguniverse-20c51-default-rtdb.firebaseio.com/article.json');
-          const data = await response.json();
-          dispatch(articleActions.replace(data.items));
-        }
-        fetchData();
-      }, [dispatch]);
-
-    // Scroll to the top of the page
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth' // Optionally, you can use 'auto' or 'instant' for different scrolling behavior
+  useEffect(() => {
+    setLoading(true);
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        dispatch(loginActions.login());
+      }
     });
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1000);
 
-    const params = useParams();
-    const blogid = params?.blogitemId?.substring(1);
+    return () => {
+      clearTimeout(timer);
+    };
 
-    const blogItemList = useSelector(state => state.article.items);
+  }, [dispatch]);
 
-    const blogItems = blogItemList.filter((item) => {
-        return (item.id === blogid);
-    });
-    const props = blogItems[0];
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch('https://codinguniverse-20c51-default-rtdb.firebaseio.com/article.json');
+      const data = await response.json();
+      dispatch(articleActions.replace(data.items));
+    }
+    fetchData();
+  }, [dispatch]);
 
-    return (
-        <div className={classes.main}>
-            <Nav></Nav>
-            <div className={classes.blogItem}>
+  // Scroll to the top of the page
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth' // Optionally, you can use 'auto' or 'instant' for different scrolling behavior
+  });
 
-                <div className={classes.like}>
-                    <i class="fas fa-heart"></i>
-                </div>
+  const params = useParams();
+  const blogid = params?.blogitemId?.substring(1);
 
-                <h2>{props?.title}</h2>
+  const blogItemList = useSelector(state => state.article.items);
 
-                <div className={classes.details}>
-                    <h3><span>Author Name : </span>{props?.author}</h3>
-                    <h3><span>Published on : </span>{props?.date}</h3>
-                </div>
+  const blogItems = blogItemList.filter((item) => {
+    return (item.id === blogid);
+  });
+  const props = blogItems[0];
 
-                <div className={classes.content} dangerouslySetInnerHTML={{ __html: props?.content }} />
-            </div>
+  return (
+    <div className={classes.main}>
+      {loading && <Loader></Loader>}
+      <Nav></Nav>
+      <div className={classes.blogItem}>
+
+        <div className={classes.like}>
+          <i class="fas fa-heart"></i>
         </div>
-    )
+
+        <h2>{props?.title}</h2>
+
+        <div className={classes.details}>
+          <h3><span>Author Name : </span>{props?.author}</h3>
+          <h3><span>Published on : </span>{props?.date}</h3>
+        </div>
+
+        <div className={classes.content} dangerouslySetInnerHTML={{ __html: props?.content }} />
+      </div>
+    </div>
+  )
 }
 
 export default DetailedBlog
