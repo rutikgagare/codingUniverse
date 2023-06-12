@@ -17,9 +17,6 @@ import Loader from './Loader';
 
 const EditBlog = () => {
 
-
-  const params = useParams();
-  const blogid = params?.editblogitemId?.substring(1);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const user = useSelector(state => state?.login?.logedIn);
@@ -54,6 +51,9 @@ const EditBlog = () => {
     fetchData();
   }, [dispatch]);
 
+  const params = useParams();
+  const blogid = params?.editblogitemId?.substring(1);
+  
   const blogItems = blogItemList.filter((item) => {
     return (item.id === blogid);
   });
