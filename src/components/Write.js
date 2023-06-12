@@ -29,8 +29,6 @@ const Write = () => {
     const [selectedTags, setSelectedTags] = useState([]);
     const [todaysDate, setTodaysDate] = useState('');
     const [loading, setLoading] = useState(false);
-
-
     const [showPreview, setShowPreview] = useState({ name: "Open Preview", status: false });
 
     const tagsData = [
@@ -220,7 +218,7 @@ const Write = () => {
             {/* preview */}
             {user &&
                 <div className={classes.preview}>
-                    <button onClick={previewHandler}>{showPreview.name}</button>
+                    <button onClick={previewHandler}>{showPreview.name} </button>
                     {showPreview.status && <Preview title={title} content={editorData} date={todaysDate}></Preview>}
                 </div>
             }

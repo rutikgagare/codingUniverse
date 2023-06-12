@@ -135,7 +135,7 @@ form label {
 }
 
 .preview button{
-  padding: 0.5rem;
+  padding: 0.5rem 1rem;
   border: none;
   outline: none;
   background-color: rgb(43, 149, 206);

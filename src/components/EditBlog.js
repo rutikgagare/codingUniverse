@@ -17,15 +17,15 @@ import Loader from './Loader';
 
 const EditBlog = () => {
 
-  
+
   const params = useParams();
   const blogid = params?.editblogitemId?.substring(1);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const user = useSelector(state => state?.login?.logedIn);
   const blogItemList = useSelector(state => state.article.items);
-  const [loading,setLoading] = useState(false);
-  
+  const [loading, setLoading] = useState(false);
+
   useEffect(() => {
     setLoading(true);
 
@@ -64,7 +64,8 @@ const EditBlog = () => {
   const [title, setTitle] = useState(blogItem?.title);
   const [selectedTags, setSelectedTags] = useState(blogItem?.tags);
   const [todaysDate, setTodaysDate] = useState('');
-  const [showPreview, setShowPreview] = useState(false);
+  const [showPreview, setShowPreview] = useState({ name: "Open Preview", status: false });
+
 
   const tagsData = [
     { id: 1, name: 'HTML' },
@@ -100,7 +101,12 @@ const EditBlog = () => {
   }
 
   const previewHandler = () => {
-    setShowPreview(!showPreview);
+    if (showPreview.status === false) {
+      setShowPreview({ name: "Close Preview", status: true });
+    }
+    else {
+      setShowPreview({ name: "Open Preview", status: false });
+    }
   }
 
   const handleEditorChange = (event, editor) => {
@@ -220,7 +226,7 @@ const EditBlog = () => {
       {/* preview */}
       {user &&
         <div className={classes.preview}>
-          <button onClick={previewHandler}>Check Preview</button>
+          <button onClick={previewHandler}>{showPreview.name} </button>
 
           {showPreview && <Preview title={title} content={editorData} date={todaysDate}></Preview>}
         </div>
