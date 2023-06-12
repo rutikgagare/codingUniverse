@@ -41,7 +41,7 @@ const SignUpWrite = () => {
       <form onSubmit={registrationHandler} className={classes.form}>
         <h2>SignUp</h2>
 
-        <input type="text" placeholder='User name' onChange={(e) => { setEmail(e.target.value) }} />
+        <input type="text" placeholder='User name' onChange={(e) => { setUserName(e.target.value) }} />
         <input type="email" placeholder='Email' onChange={(e) => { setEmail(e.target.value) }} />
         <input type="password" placeholder='Password' onChange={(e) => { setPassword(e.target.value) }} />
 

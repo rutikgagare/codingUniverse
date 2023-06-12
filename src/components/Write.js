@@ -10,6 +10,7 @@ import { v4 as uuid } from 'uuid';
 import { useNavigate } from 'react-router-dom';
 import { loginActions } from '../store/loginSlice';
 import Nav from './Nav';
+import Preview from './Preview1';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -25,6 +26,8 @@ const Write = () => {
     const [plainText, setPlainText] = useState('');
     const [title, setTitle] = useState('');
     const [selectedTags, setSelectedTags] = useState([]);
+    const [todaysDate, setTodaysDate] = useState('');
+    const [showPreview,setShowPreview] = useState(false);
 
     const tagsData = [
         { id: 1, name: 'HTML' },
@@ -36,6 +39,19 @@ const Write = () => {
         { id: 7, name: 'Front-end' },
         { id: 8, name: 'Rules' },
     ];
+
+    useEffect(() => {
+        const currentDate = new Date();
+
+        const options = {
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric'
+        };
+
+        const formattedDate = currentDate.toLocaleDateString(undefined, options);
+        setTodaysDate(formattedDate);
+    }, [])
 
     useEffect(() => {
         auth.onAuthStateChanged((user) => {
@@ -61,6 +77,10 @@ const Write = () => {
         });
     }
 
+    const previewHandler = () =>{
+        setShowPreview(!showPreview);
+    }
+
     const handleEditorChange = (event, editor) => {
         const data = editor.getData();
         setEditorData(data);
@@ -83,6 +103,7 @@ const Write = () => {
     const redirecToRegister = () => {
         navigate('/signupwrite');
     }
+
     // Handler for selecting/deselecting a tag
     const handleTagSelection = (tagId) => {
         if (selectedTags.includes(tagId)) {
@@ -97,16 +118,6 @@ const Write = () => {
 
         const uniqueId = uuid();
 
-        const currentDate = new Date();
-
-        const options = {
-            day: 'numeric',
-            month: 'long',
-            year: 'numeric'
-        };
-
-        const formattedDate = currentDate.toLocaleDateString(undefined, options);
-
         dispatch(articleActions.addArticle({
             id: uniqueId,
             title: title,
@@ -114,8 +125,9 @@ const Write = () => {
             plaintext: plainText,
             user: auth?.currentUser?.uid,
             author: auth?.currentUser?.displayName,
-            date: formattedDate,
-            tags:selectedTags
+            date: todaysDate,
+            tags: selectedTags,
+            email: auth?.currentUser?.email
         }));
 
         notify("Article published Successfully");
@@ -177,10 +189,21 @@ const Write = () => {
                         </div>
 
                         <button type='submit'>Publish</button>
+                        <button onClick={previewHandler}>Check Preview</button>
                     </div>
-                </form>
+
+                </form >
             </div>
             }
+
+            {/* preview */}
+            {user &&
+                <div className={classes.preview}>
+                    {showPreview && <Preview title={title} content={editorData} date={todaysDate}></Preview>}
+                </div>
+            }
+
+            {/* If user is not logined */}
             {
                 !user &&
                 <div className={classes.main}>

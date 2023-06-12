@@ -43,6 +43,7 @@ const EditBlog = () => {
   const [title, setTitle] = useState(blogItem?.title);
   const [selectedTags, setSelectedTags] = useState(blogItem?.tags);
 
+
   const tagsData = [
     { id: 1, name: 'HTML' },
     { id: 2, name: 'CSS' },
@@ -117,8 +118,10 @@ const EditBlog = () => {
       plaintext: plainText,
       user: auth?.currentUser?.uid,
       author: auth?.currentUser?.displayName,
-      date: formattedDate,
-      tags:selectedTags
+      date: blogItem.date,
+      tags:selectedTags,
+      email:auth?.currentUser?.email,
+      latesteditdate:formattedDate
     }));
 
     notify("Article Updated Successfully");

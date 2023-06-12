@@ -1,0 +1,115 @@
+.preview {
+  /* border: 2px solid red; */
+  width: 100%;
+  margin: auto;
+}
+
+.preview .blogItem {
+  width: 80%;
+  padding: 1rem 2rem;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+  margin: 1.5rem 0;
+  border-radius: 0.5rem;
+  background-color: white;
+  overflow-wrap: break-word;
+  position: relative;
+}
+
+.blogItem h2 {
+  margin: 2rem 0;
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+.blogItem .details {
+  display: flex;
+  justify-content: space-between;
+}
+
+.blogItem .details h3 {
+  font-weight: 400;
+  font-size: 1rem;
+}
+
+.blogItem .details h3 span {
+  font-weight: 600;
+}
+
+.blogItem .description {
+  margin: 1rem 0;
+}
+
+.blogItem .content {
+  padding: 0.5rem;
+  margin: 1rem 0;
+}
+
+.blogItem .content {
+  overflow-wrap: break-word;
+  hyphens: manual;
+}
+
+.blogItem .content img {
+  max-width: 95%;
+  display: block;
+  margin: 1rem auto;
+}
+
+.blogItem .content a {
+  color: blue;
+}
+
+/* .blogItem h4{
+  padding: 0.3rem 1rem;
+  background-color: rgb(240, 240, 240);
+  border: 1px solid black;
+  width: fit-content;
+  border-radius: 1rem;
+} */
+
+.blogItem .like {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+.like {
+  font-size: 1.2rem;
+}
+
+.like i:hover {
+  color: red;
+}
+
+@media screen and (max-width: 600px) {
+  .preview {
+    width: 100%;
+  }
+
+  .preview .blogItem {
+    margin: auto;
+    width: 90%;
+  }
+
+  .blogItem h2 {
+    font-size: 1.2rem;
+  }
+
+  .blogItem .details {
+    font-size: 0.9rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .blogItem .details h3 {
+    margin: 0.2rem 0;
+  }
+
+  .blogItem .content {
+    font-size: 1rem;
+  }
+
+  .blogItem title {
+    font-size: 1rem;
+  }
+}
