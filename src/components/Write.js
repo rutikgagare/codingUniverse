@@ -27,7 +27,8 @@ const Write = () => {
     const [title, setTitle] = useState('');
     const [selectedTags, setSelectedTags] = useState([]);
     const [todaysDate, setTodaysDate] = useState('');
-    const [showPreview,setShowPreview] = useState(false);
+
+    const [showPreview,setShowPreview] = useState({name:"Open Preview",status:false});
 
     const tagsData = [
         { id: 1, name: 'HTML' },
@@ -80,7 +81,12 @@ const Write = () => {
     }
 
     const previewHandler = () =>{
-        setShowPreview(!showPreview);
+        if(showPreview.status == false){
+            setShowPreview({name:"Close Preview",status:true});
+        }
+        else{
+            setShowPreview({name:"Open Preview",status:false});
+        }
     }
 
     const handleEditorChange = (event, editor) => {
@@ -200,8 +206,8 @@ const Write = () => {
             {/* preview */}
             {user &&
                 <div className={classes.preview}>
-                    <button onClick={previewHandler}>Check Preview</button>
-                    {showPreview && <Preview title={title} content={editorData} date={todaysDate}></Preview>}
+                    <button onClick={previewHandler}>{showPreview.name}</button>
+                    {showPreview.status && <Preview title={title} content={editorData} date={todaysDate}></Preview>}
                 </div>
             }
 

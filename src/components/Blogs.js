@@ -24,13 +24,15 @@ const Blogs = () => {
         { id: 6, name: 'DSA' },
         { id: 7, name: 'Front-end' },
         { id: 8, name: 'Rules' },
+        { id: 9, name: 'Python' },
+        { id: 10, name: 'Web development' }
     ];
 
 
     const handleSearch = () => {
         if (searchTerm.length !== 0) {
             setDisplayContent(blogItems.filter((article) => {
-                return article.title.includes(searchTerm) || article.content.includes(searchTerm) || article.plaintext.includes(searchTerm) || article.title.includes(searchTerm.toLowerCase()) || article.plaintext.includes(searchTerm.toLowerCase()) || article.content.includes(searchTerm.toLowerCase()) || article.content.includes(searchTerm.charAt(0).toUpperCase() + searchTerm.slice(1)) || article.title.includes(searchTerm.charAt(0).toUpperCase() + searchTerm.slice(1)) || article.plaintext.includes(searchTerm.charAt(0).toUpperCase() + searchTerm.slice(1))
+                return article.title.includes(searchTerm) || article.content.includes(searchTerm) || article.plaintext.includes(searchTerm) || article.title.includes(searchTerm.toLowerCase()) || article.plaintext.includes(searchTerm.toLowerCase()) || article.content.includes(searchTerm.toLowerCase()) || article.content.includes(searchTerm.charAt(0).toUpperCase() + searchTerm.slice(1)) || article.title.includes(searchTerm.charAt(0).toUpperCase() + searchTerm.slice(1)) || article.plaintext.includes(searchTerm.charAt(0).toUpperCase() + searchTerm.slice(1)) 
             }))
         }
 

@@ -4,17 +4,26 @@ import classes from './SignUp.module.css';
 import { signInWithPopup, signInWithEmailAndPassword } from 'firebase/auth';
 import { auth, googleProvider } from '../config/firebase';
 import { Link } from 'react-router-dom';
+import Loader from './Loader';
 
 const SignInWrite = () => {
     const navigate = useNavigate();
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [loading,setLoading] = useState(false);
 
     const loginHandler = async (event) => {
         event.preventDefault();
+        setLoading(true);
         try {
             const response = await signInWithEmailAndPassword(auth, email, password);
+
+            const timer = setTimeout(() => {
+                setLoading(false);
+            }, 1000);
+          
+            clearTimeout(timer);
             navigate('/write');
 
         } catch (error) {
@@ -23,8 +32,15 @@ const SignInWrite = () => {
     }
 
     const signInWithGoogleHandler = async () => {
+        setLoading(true);
         try {
             await signInWithPopup(auth, googleProvider);
+
+            const timer = setTimeout(() => {
+                setLoading(false);
+              }, 1000);
+          
+            clearTimeout(timer);
             navigate('/write');
 
         } catch (error) {

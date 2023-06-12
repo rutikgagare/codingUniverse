@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, {useState, useEffect } from 'react';
 import Nav from './Nav';
 import Main from './Main';
 import Blogs from './Blogs';
@@ -8,17 +8,29 @@ import { loginActions } from '../store/loginSlice';
 import { articleActions } from '../store/articleSlice';
 import classes from './Home.module.css';
 import { ToastContainer } from 'react-toastify';
+import Loader from './Loader';
 
 const Home = () => {
 
   const dispatch = useDispatch();
+  const [loading,setLoading] = useState(false);
 
   useEffect(() => {
+    setLoading(true);
+
     auth.onAuthStateChanged((user) => {
       if (user) {
         dispatch(loginActions.login());
       }
     });
+
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+
+    return () => {
+      clearTimeout(timer);
+    };
   }, [dispatch]);
 
   useEffect(() => {
@@ -32,6 +44,7 @@ const Home = () => {
 
   return (
     <div className={classes.home}>
+      {loading && <Loader></Loader>}
       <Nav></Nav>
       <Main></Main>
       <Blogs></Blogs>
