@@ -14,14 +14,7 @@ const Blogs = () => {
         setDisplayContent(blogItems);
     },[blogItems])
 
-    useEffect(()=>{
-        const articleContainer = document.querySelector('.blogs');
-        if(articleContainer && displayContent.length !== 0) {
-            articleContainer.scrollTop = 0;
-        }
-    },[displayContent]);
-
-
+    
     const tagsData = [
         { id: 1, name: 'HTML' },
         { id: 2, name: 'CSS' },
@@ -41,6 +34,13 @@ const Blogs = () => {
             }))
         }
         setSearchTerm('');
+
+        const element = document.querySelector(`.${classes.blogs}`);
+        if (element) {
+            const yOffset = -100; // Adjust the yOffset value as per your requirement
+            const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+            window.scrollTo({ top: y, behavior: 'smooth' });
+        }
     }
 
     // Handler for selecting/deselecting a tag
