@@ -38,6 +38,8 @@ const Write = () => {
         { id: 6, name: 'DSA' },
         { id: 7, name: 'Front-end' },
         { id: 8, name: 'Rules' },
+        { id: 9, name: 'Python' },
+        { id: 10, name: 'Web development' },
     ];
 
     useEffect(() => {

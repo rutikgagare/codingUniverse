@@ -10,6 +10,7 @@ import { useNavigate } from 'react-router-dom';
 import { loginActions } from '../store/loginSlice';
 import { useParams } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
+import Preview from './Preview1';
 import 'react-toastify/dist/ReactToastify.css';
 import Nav from './Nav';
 
@@ -42,6 +43,8 @@ const EditBlog = () => {
   const [plainText, setPlainText] = useState(blogItem?.plaintext);
   const [title, setTitle] = useState(blogItem?.title);
   const [selectedTags, setSelectedTags] = useState(blogItem?.tags);
+  const [todaysDate, setTodaysDate] = useState('');
+  const [showPreview, setShowPreview] = useState(false);
 
 
   const tagsData = [
@@ -53,7 +56,22 @@ const EditBlog = () => {
     { id: 6, name: 'DSA' },
     { id: 7, name: 'Front-end' },
     { id: 8, name: 'Rules' },
+    { id: 9, name: 'Python' },
+    { id: 10, name: 'Web development' },
   ];
+
+  useEffect(() => {
+    const currentDate = new Date();
+
+    const options = {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric'
+    };
+
+    const formattedDate = currentDate.toLocaleDateString(undefined, options);
+    setTodaysDate(formattedDate);
+  }, [])
 
 
   useEffect(() => {
@@ -69,6 +87,10 @@ const EditBlog = () => {
       position: toast.POSITION.TOP_RIGHT,
       autoClose: 2000,
     });
+  }
+
+  const previewHandler = () => {
+    setShowPreview(!showPreview);
   }
 
   const handleEditorChange = (event, editor) => {
@@ -102,15 +124,6 @@ const EditBlog = () => {
   const editArticleHandler = (event) => {
     event.preventDefault();
 
-    let currentDate = new Date();
-    const options = {
-      day: 'numeric',
-      month: 'long',
-      year: 'numeric'
-    };
-
-    const formattedDate = currentDate.toLocaleDateString(undefined, options);
-
     dispatch(articleActions.editArticle({
       id: blogid,
       title: title,
@@ -119,9 +132,9 @@ const EditBlog = () => {
       user: auth?.currentUser?.uid,
       author: auth?.currentUser?.displayName,
       date: blogItem.date,
-      tags:selectedTags,
-      email:auth?.currentUser?.email,
-      latesteditdate:formattedDate
+      tags: selectedTags,
+      email: auth?.currentUser?.email,
+      latesteditdate: todaysDate
     }));
 
     notify("Article Updated Successfully");
@@ -187,10 +200,19 @@ const EditBlog = () => {
             </div>
 
             <button type='submit'>Submit Changes</button>
+            <button onClick={previewHandler}>Check Preview</button>
           </div>
         </form>
       </div>
       }
+
+      {/* preview */}
+      {user &&
+        <div className={classes.preview}>
+          {showPreview && <Preview title={title} content={editorData} date={todaysDate}></Preview>}
+        </div>
+      }
+
       {
         !user &&
         <div className={classes.main}>
