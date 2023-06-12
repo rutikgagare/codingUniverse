@@ -33,14 +33,14 @@ const Blogs = () => {
                 return article.title.includes(searchTerm) || article.content.includes(searchTerm) || article.plaintext.includes(searchTerm) || article.title.includes(searchTerm.toLowerCase()) || article.plaintext.includes(searchTerm.toLowerCase()) || article.content.includes(searchTerm.toLowerCase()) || article.content.includes(searchTerm.charAt(0).toUpperCase() + searchTerm.slice(1)) || article.title.includes(searchTerm.charAt(0).toUpperCase() + searchTerm.slice(1)) || article.plaintext.includes(searchTerm.charAt(0).toUpperCase() + searchTerm.slice(1))
             }))
         }
-        setSearchTerm('');
-
+        
         const element = document.querySelector(`.${classes.blogs}`);
         if(element) {
-            const yOffset = -170; // Adjust the yOffset value as per your requirement
+            const yOffset = -50; // Adjust the yOffset value as per your requirement
             const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
             window.scrollTo({ top: y, behavior: 'smooth' });
         }
+        setSearchTerm('');
     }
 
     // Handler for selecting/deselecting a tag
