@@ -52,6 +52,7 @@
 @media screen and (max-width: 600px) {
     .main_content{
         flex-direction: column;
+        padding: 1rem 2rem;
     }
 
     .main_content .left{
