@@ -99,7 +99,7 @@
     width: 70%;
   }
 
-  .search :no-button{
+  .search button{
     width: 30%;
   }
 }
