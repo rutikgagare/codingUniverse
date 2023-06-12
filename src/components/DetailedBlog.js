@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, {useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { loginActions } from '../store/loginSlice';
 import { articleActions } from '../store/articleSlice';
@@ -11,7 +11,7 @@ import Loader from './Loader';
 
 const DetailedBlog = () => {
   const dispatch = useDispatch();
-  const [loading, setLoading] = true;
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     setLoading(true);
@@ -53,6 +53,7 @@ const DetailedBlog = () => {
   const blogItems = blogItemList.filter((item) => {
     return (item.id === blogid);
   });
+  
   const props = blogItems[0];
 
   return (

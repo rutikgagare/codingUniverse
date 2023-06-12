@@ -20,8 +20,13 @@ const EditBlog = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const user = useSelector(state => state?.login?.logedIn);
-  const blogItemList = useSelector(state => state.article.items);
   const [loading, setLoading] = useState(false);
+  const [editorData, setEditorData] = useState('');
+  const [plainText, setPlainText] = useState('');
+  const [title, setTitle] = useState('');
+  const [selectedTags, setSelectedTags] = useState([]);
+  const [todaysDate, setTodaysDate] = useState('');
+  const [showPreview, setShowPreview] = useState({ name: "Open Preview", status: false });
 
   useEffect(() => {
     setLoading(true);
@@ -53,19 +58,20 @@ const EditBlog = () => {
 
   const params = useParams();
   const blogid = params?.editblogitemId?.substring(1);
-  
+  const blogItemList = useSelector(state => state.article.items);
+
   const blogItems = blogItemList.filter((item) => {
     return (item.id === blogid);
   });
   const blogItem = blogItems[0];
+  console.log(blogItem);
 
-  const [editorData, setEditorData] = useState(blogItem?.content);
-  const [plainText, setPlainText] = useState(blogItem?.plaintext);
-  const [title, setTitle] = useState(blogItem?.title);
-  const [selectedTags, setSelectedTags] = useState(blogItem?.tags);
-  const [todaysDate, setTodaysDate] = useState('');
-  const [showPreview, setShowPreview] = useState({ name: "Open Preview", status: false });
-
+  useEffect(()=>{
+    setTitle(blogItem?.title);
+    setEditorData(blogItem?.editorData);
+    setPlainText(blogItem?.plainText);
+    setSelectedTags(blogItem?.tags);
+  },[blogItem]);
 
   const tagsData = [
     { id: 1, name: 'HTML' },
