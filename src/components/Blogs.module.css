@@ -1,33 +1,67 @@
-.blogs{
-    width: 100%;
-    margin: auto;
-    padding: 2rem;
-    gap: 1rem;
+.blogs {
+  width: 100%;
+  margin: auto;
+  padding: 2rem;
+  gap: 1rem;
 }
 
-.tags{
+.search {
+  margin: auto;
+  margin-top: 1rem;
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  gap: 1rem;
+}
+
+.search input {
+  padding: 0.5rem 1rem;
+  width: 80%;
+  border-radius: 0.6rem;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  border: 1px solid grey;
+}
+
+.search button {
+  padding: 0.5rem 1rem;
+  width: 20%;
+  border-radius: 0.6rem;
+  border: none;
+  outline: none;
+  background-color: #1292ee;
+  color: white;
+  font-size: 1rem;
+}
+
+.search button:hover {
+  background-color: #0077cc;
+}
+
+.tags {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
   width: 80%;
   margin: auto;
-  margin-top: 2rem;
-  padding: 1rem 2rem;
+  margin-top: 1rem;
+  padding: 1rem;
   gap: 0.5rem;
-  border: 2px solid grey;
   border-radius: 0.5rem;
-  background-color: white;
 }
 
-.tags span{
+.tags span {
   font-size: 0.9rem;
   font-weight: 400;
   padding: 0.5rem 1rem;
-  border: 2px solid #0080dc; 
+  border: 2px solid #0080dc;
   border-radius: 0.7rem;
 }
 
-.active{
+.active {
   background-color: rgb(43, 149, 206);
   border: none;
   outline: none;
@@ -35,19 +69,24 @@
 }
 
 @media screen and (max-width: 600px) {
-    .blogs {
-      width: 100%;
-      padding: 0.5rem;
-      gap: 1rem 0rem;
-    }
+  .blogs {
+    width: 100%;
+    padding: 0.5rem;
+    gap: 1rem 0rem;
+  }
 
-    .tags{
-      width: 90%;
-      padding: 1rem;
-    }
+  .tags {
+    width: 90%;
+    padding: 1rem;
+  }
 
-    .tags span{
-      padding: 0.5rem 0.7rem;
-      font-weight: 0.7rem;
-    }
+  .search {
+    width: 90%;
+    padding: 1rem;
+  }
+
+  .tags span {
+    padding: 0.5rem 0.7rem;
+    font-weight: 0.7rem;
+  }
 }

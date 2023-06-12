@@ -1,11 +1,19 @@
 import BlogItem from "./BlogItem";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import classes from './Blogs.module.css';
 import { useSelector } from "react-redux";
 
 const Blogs = () => {
     const blogItems = useSelector(state => state.article.items);
     const [selectedTags, setSelectedTags] = useState([]);
+    const [searchTerm, setSearchTerm] = useState('');
+    const [displayContent,setDisplayContent] = useState([]);
+
+
+    useEffect(()=>{
+        setDisplayContent(blogItems);
+    },[blogItems])
+
 
     const tagsData = [
         { id: 1, name: 'HTML' },
@@ -18,6 +26,16 @@ const Blogs = () => {
         { id: 8, name: 'Rules' },
     ];
 
+
+    const handleSearch = () => {
+        if (searchTerm.length !== 0) {
+            setDisplayContent(blogItems.filter((article) => {
+                return article.title.includes(searchTerm) || article.content.includes(searchTerm) || article.plaintext.includes(searchTerm) || article.title.includes(searchTerm.toLowerCase()) || article.plaintext.includes(searchTerm.toLowerCase()) || article.content.includes(searchTerm.toLowerCase()) || article.content.includes(searchTerm.charAt(0).toUpperCase() + searchTerm.slice(1)) || article.title.includes(searchTerm.charAt(0).toUpperCase() + searchTerm.slice(1)) || article.plaintext.includes(searchTerm.charAt(0).toUpperCase() + searchTerm.slice(1))
+            }))
+        }
+        setSearchTerm('');
+    }
+
     // Handler for selecting/deselecting a tag
     const handleTagSelection = (tagId) => {
         if (selectedTags.includes(tagId)) {
@@ -26,16 +44,25 @@ const Blogs = () => {
             setSelectedTags([...selectedTags, tagId]);
         }
     };
-    
-    const filteredContent = blogItems.filter((content) => {
-        if (selectedTags.length === 0) {
-          return true; 
+
+    useEffect(()=>{
+        if(selectedTags.length == 0){
+            setDisplayContent(blogItems);
         }
-        return selectedTags.some((tagId) => content?.tags?.includes(tagId));
-    });
+        else{
+            setDisplayContent(blogItems.filter((article) => {
+                return selectedTags.some((tagId) => article?.tags?.includes(tagId));
+            })); 
+        }
+    },[selectedTags]);
 
     return (
         <>
+            <div className={classes.search}>
+                <input type="text" placeholder="Search Article" value={searchTerm} onChange={(event) => { setSearchTerm(event.target.value.trim()) }} />
+                <button onClick={handleSearch} >Search</button>
+            </div>
+
             <div className={classes.tags}>
                 {tagsData.map((tag) => (
                     <span
@@ -49,9 +76,9 @@ const Blogs = () => {
             </div>
 
             <div className={classes.blogs}>
-                {filteredContent && filteredContent.length !== 0 && filteredContent.map((item) => {
-                    return (<BlogItem key={item.id} id={item.id} title={item.title} content={item.content} plaintext={item.plaintext} date={item.date} author={item.author} category={item.category}></BlogItem>);
-                })
+                {displayContent && displayContent.length !== 0 && displayContent.map((item) => {
+                        return (<BlogItem key={item.id} id={item.id} title={item.title} content={item.content} plaintext={item.plaintext} date={item.date} author={item.author} category={item.category}></BlogItem>);
+                    })
                 }
             </div>
         </>
