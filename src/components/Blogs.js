@@ -7,14 +7,14 @@ const Blogs = () => {
     const blogItems = useSelector(state => state.article.items);
     const [selectedTags, setSelectedTags] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
-    const [displayContent,setDisplayContent] = useState([]);
+    const [displayContent, setDisplayContent] = useState([]);
 
 
-    useEffect(()=>{
+    useEffect(() => {
         setDisplayContent(blogItems);
-    },[blogItems])
+    }, [blogItems])
 
-    
+
     const tagsData = [
         { id: 1, name: 'HTML' },
         { id: 2, name: 'CSS' },
@@ -33,12 +33,16 @@ const Blogs = () => {
                 return article.title.includes(searchTerm) || article.content.includes(searchTerm) || article.plaintext.includes(searchTerm) || article.title.includes(searchTerm.toLowerCase()) || article.plaintext.includes(searchTerm.toLowerCase()) || article.content.includes(searchTerm.toLowerCase()) || article.content.includes(searchTerm.charAt(0).toUpperCase() + searchTerm.slice(1)) || article.title.includes(searchTerm.charAt(0).toUpperCase() + searchTerm.slice(1)) || article.plaintext.includes(searchTerm.charAt(0).toUpperCase() + searchTerm.slice(1))
             }))
         }
-        
+
         const element = document.querySelector(`.${classes.blogs}`);
-        if(element) {
+        if (element) {
             const yOffset = -50; // Adjust the yOffset value as per your requirement
             const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
-            window.scrollTo({ top: y, behavior: 'smooth' });
+
+            // Use a timeout to ensure smooth scrolling in mobile devices
+            setTimeout(() => {
+                window.scrollTo({ top: y, behavior: 'smooth' });
+            }, 100);
         }
         setSearchTerm('');
     }
@@ -52,16 +56,16 @@ const Blogs = () => {
         }
     };
 
-    useEffect(()=>{
-        if(selectedTags.length == 0){
+    useEffect(() => {
+        if (selectedTags.length == 0) {
             setDisplayContent(blogItems);
         }
-        else{
+        else {
             setDisplayContent(blogItems.filter((article) => {
                 return selectedTags.some((tagId) => article?.tags?.includes(tagId));
-            })); 
+            }));
         }
-    },[selectedTags]);
+    }, [selectedTags]);
 
     return (
         <>
@@ -84,8 +88,8 @@ const Blogs = () => {
 
             <div className={classes.blogs}>
                 {displayContent && displayContent.length !== 0 && displayContent.map((item) => {
-                        return (<BlogItem key={item.id} id={item.id} title={item.title} content={item.content} plaintext={item.plaintext} date={item.date} author={item.author} category={item.category}></BlogItem>);
-                    })
+                    return (<BlogItem key={item.id} id={item.id} title={item.title} content={item.content} plaintext={item.plaintext} date={item.date} author={item.author} category={item.category}></BlogItem>);
+                })
                 }
             </div>
         </>
