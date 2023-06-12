@@ -36,8 +36,8 @@ const Blogs = () => {
         setSearchTerm('');
 
         const element = document.querySelector(`.${classes.blogs}`);
-        if (element) {
-            const yOffset = -100; // Adjust the yOffset value as per your requirement
+        if(element) {
+            const yOffset = -170; // Adjust the yOffset value as per your requirement
             const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
             window.scrollTo({ top: y, behavior: 'smooth' });
         }
