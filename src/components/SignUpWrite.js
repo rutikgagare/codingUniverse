@@ -55,6 +55,7 @@ const SignUpWrite = () => {
 
   return (
     <div className={classes.main}>
+      {loading && <Loader></Loader>}
       <form onSubmit={registrationHandler} className={classes.form}>
         <h2>SignUp</h2>
 

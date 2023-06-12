@@ -50,7 +50,7 @@ const SignInWrite = () => {
 
     return (
         <div className={classes.main}>
-
+            {loading && <Loader></Loader>}
             <form className={classes.form} onSubmit={loginHandler} >
                 <h2>Welcome back </h2>
                 <input type="email" placeholder='Email address' onChange={(e) => { setEmail(e.target.value) }} />
