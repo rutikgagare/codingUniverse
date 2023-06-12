@@ -228,7 +228,7 @@ const EditBlog = () => {
         <div className={classes.preview}>
           <button onClick={previewHandler}>{showPreview.name} </button>
 
-          {showPreview && <Preview title={title} content={editorData} date={todaysDate}></Preview>}
+          {showPreview.status && <Preview title={title} content={editorData} date={todaysDate}></Preview>}
         </div>
       }
 
