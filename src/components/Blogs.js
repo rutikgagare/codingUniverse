@@ -36,7 +36,7 @@ const Blogs = () => {
 
         const element = document.querySelector(`.${classes.blogs}`);
         if (element) {
-            const yOffset = -50; // Adjust the yOffset value as per your requirement
+            const yOffset = -100; // Adjust the yOffset value as per your requirement
             const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
 
             // Use a timeout to ensure smooth scrolling in mobile devices
