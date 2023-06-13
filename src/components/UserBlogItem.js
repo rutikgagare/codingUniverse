@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { articleActions } from '../store/articleSlice';
 import { useNavigate } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
+import {auth} from '../config/firebase';
 
 const UserBlogItem = (props) => {
   const dispatch = useDispatch();
@@ -33,6 +34,10 @@ const UserBlogItem = (props) => {
       <div className={classes.description}>
         <p>{props?.plaintext?.substring(0, 300)}.................</p>
       </div>
+
+      <div className={classes.like}>
+          <i class="fa-solid fa-thumbs-up"></i> <span>{props?.likes?.length - 1}</span>
+        </div>
     </div>
   )
 }

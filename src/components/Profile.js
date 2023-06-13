@@ -88,7 +88,7 @@ const Profile = () => {
           {myarticles.length !== 0 &&
             <div className={classes.blogs}>
               {myarticles.map((item) => {
-                return (<UserBlogItem key={item.id} id={item.id} title={item.title} content={item.content} plaintext={item.plaintext} date={item.date} author={item.author} category={item.category}></UserBlogItem>);
+                return (<UserBlogItem key={item.id} id={item.id} title={item.title} content={item.content} plaintext={item.plaintext} date={item.date} author={item.author} category={item.category} likes={item.likes}></UserBlogItem>);
               })
               }
             </div>
