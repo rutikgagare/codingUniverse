@@ -1,4 +1,4 @@
-import React, {useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { loginActions } from '../store/loginSlice';
 import { articleActions } from '../store/articleSlice';
@@ -8,6 +8,7 @@ import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import classes from './BlogItem.module.css';
 import Loader from './Loader';
+let send = false;
 
 const DetailedBlog = () => {
   const dispatch = useDispatch();
@@ -51,10 +52,35 @@ const DetailedBlog = () => {
   const blogItemList = useSelector(state => state.article.items);
 
   const blogItems = blogItemList.filter((item) => {
-    return (item.id === blogid);
+    return (item?.id === blogid);
   });
-  
+
+  const likeHandler = () => {
+    if (props?.likes?.includes(auth?.currentUser?.uid)) {
+      // console.log("remove handler");
+      dispatch(articleActions.removeLikeHandler(props?.id));
+    }
+    else {
+      // console.log("add handler");
+      dispatch(articleActions.addLikeHandler(props?.id));
+    }
+  }
+
   const props = blogItems[0];
+
+  useEffect(() => {
+    const sendData = async () => {
+      if (send === false) {
+        send = true;
+        return;
+      }
+      await fetch('https://codinguniverse-20c51-default-rtdb.firebaseio.com/article.json', {
+        method: "PUT",
+        body: JSON.stringify({ items: blogItemList })
+      })
+    }
+    sendData();
+  }, [blogItemList]);
 
   return (
     <div className={classes.main}>
@@ -62,8 +88,9 @@ const DetailedBlog = () => {
       <Nav></Nav>
       <div className={classes.blogItem}>
 
-        <div className={classes.like}>
-          <i class="fas fa-heart"></i>
+        <div className={`${classes.like} ${props?.likes?.includes(auth?.currentUser?.uid) ? classes.active : ''}`} onClick={likeHandler}>
+          <i class="fa-solid fa-thumbs-up"></i>
+          <span>{props?.likes?.length - 1}</span>
         </div>
 
         <h2>{props?.title}</h2>
@@ -79,4 +106,4 @@ const DetailedBlog = () => {
   )
 }
 
-export default DetailedBlog
+export default DetailedBlog;

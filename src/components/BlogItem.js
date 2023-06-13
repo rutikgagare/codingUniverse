@@ -1,8 +1,12 @@
 import React from 'react';
 import classes from './BlogItem.module.css';
+import {auth} from '../config/firebase';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { articleActions } from '../store/articleSlice';
 
 const BlogItem = (props) => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const displayDetailedBlog = () => {
@@ -12,10 +16,6 @@ const BlogItem = (props) => {
 
   return (
     <div className={classes.blogItem} onClick={displayDetailedBlog}>
-      
-      <div className={classes.like}>
-        <i class="fas fa-heart"></i>
-      </div>
 
       <h2>{props?.title}</h2>
       {/* <h4>{props.category}</h4> */}
@@ -27,6 +27,7 @@ const BlogItem = (props) => {
       <div className={classes.description}>
         <p>{props?.plaintext?.substring(0, 400)}.................</p>
       </div>
+      
       {/* <div className={classes.content} dangerouslySetInnerHTML={{ __html: props.content }} /> */}
     </div>
   )

@@ -146,7 +146,8 @@ const Write = () => {
             author: auth?.currentUser?.displayName,
             date: todaysDate,
             tags: selectedTags,
-            email: auth?.currentUser?.email
+            email: auth?.currentUser?.email,
+            likes:['12345678']
         }));
 
         notify("Article published Successfully");

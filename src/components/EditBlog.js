@@ -27,6 +27,7 @@ const EditBlog = () => {
   const [plainText, setPlainText] = useState('');
   const [title, setTitle] = useState('');
   const [selectedTags, setSelectedTags] = useState([]);
+  const [likes, setLikes] = useState([]);
   const [date,setDate] = useState('');
   const [todaysDate, setTodaysDate] = useState('');
   const [showPreview, setShowPreview] = useState({ name: "Open Preview", status: false });
@@ -64,6 +65,7 @@ const EditBlog = () => {
     setTitle(blogItem?.title);
     setSelectedTags(blogItem?.tags);
     setDate(blogItem?.date);
+    setLikes(blogItem?.likes);
     
     const currentDate = new Date();
 
@@ -151,7 +153,8 @@ const EditBlog = () => {
       tags: selectedTags,
       title: title,
       user: auth?.currentUser?.uid,
-      latesteditdate: todaysDate
+      latesteditdate: todaysDate,
+      likes:likes
     }));
 
     notify("Article Updated Successfully");
