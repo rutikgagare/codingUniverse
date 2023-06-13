@@ -16,7 +16,6 @@ const BlogItem = (props) => {
 
   return (
     <div className={classes.blogItem} onClick={displayDetailedBlog}>
-
       <h2>{props?.title}</h2>
       {/* <h4>{props.category}</h4> */}
 
