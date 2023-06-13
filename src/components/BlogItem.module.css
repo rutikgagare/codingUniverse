@@ -10,7 +10,7 @@
 }
 
 .blogItem h2{
-    margin: 3rem 0;
+    margin: 2rem 0;
     font-weight: 600;
     font-size: 1.5rem;
 }
@@ -62,12 +62,13 @@
 } */
 
 .like{
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
+    /* border: 2px solid red; */
+    display: flex;
+    justify-content: right;
     display: flex;
     gap: 0 0.7rem;
     align-items: center;
+    margin-bottom: 2rem;
 }
 
 .like i{
