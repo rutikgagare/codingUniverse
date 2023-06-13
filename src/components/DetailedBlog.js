@@ -13,6 +13,10 @@ let send = false;
 const DetailedBlog = () => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
+  const [props,setProps] = useState([]);
+
+  const blogItemList = useSelector(state => state.article.items);
+
 
   useEffect(() => {
     setLoading(true);
@@ -49,11 +53,12 @@ const DetailedBlog = () => {
   const params = useParams();
   const blogid = params?.blogitemId?.substring(1);
 
-  const blogItemList = useSelector(state => state.article.items);
-
-  const blogItems = blogItemList.filter((item) => {
-    return (item?.id === blogid);
-  });
+  useEffect(()=>{
+    const blogItems = blogItemList.filter((item) => {
+      return (item?.id === blogid);
+    });
+    setProps(blogItems[0]);
+  },[blogItemList]);
 
   const likeHandler = () => {
     if (props?.likes?.includes(auth?.currentUser?.uid)) {
@@ -66,7 +71,7 @@ const DetailedBlog = () => {
     }
   }
 
-  const props = blogItems[0];
+
   
   useEffect(() => {
     const sendData = async () => {
