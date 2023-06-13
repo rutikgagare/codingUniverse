@@ -35,7 +35,6 @@ const EditBlog = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log("logined");
     auth.onAuthStateChanged((user) => {
       if(user) {
         dispatch(loginActions.login());
@@ -43,7 +42,6 @@ const EditBlog = () => {
     });
   }, []);
 
-  console.log("befor fetch",blogItemList);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -52,7 +50,6 @@ const EditBlog = () => {
       dispatch(articleActions.replace(data.items));
     }
     fetchData();
-    console.log("fetched");
   }, []);
   
 
@@ -63,7 +60,7 @@ const EditBlog = () => {
     const blogItem = blogItems[0];
 
     setEditorData(blogItem?.content);
-    setPlainText(blogItem?.plainText);
+    setPlainText(blogItem?.plaintext);
     setTitle(blogItem?.title);
     setSelectedTags(blogItem?.tags);
     setDate(blogItem?.date);
@@ -142,17 +139,18 @@ const EditBlog = () => {
 
   const editArticleHandler = (event) => {
     event.preventDefault();
+    console.log("text",plainText);
 
     dispatch(articleActions.editArticle({
-      id: blogid,
-      title: title,
-      content: editorData,
-      plaintext: plainText,
-      user: auth?.currentUser?.uid,
       author: auth?.currentUser?.displayName,
+      content: editorData,
       date: date,
-      tags: selectedTags,
       email: auth?.currentUser?.email,
+      id: blogid,
+      plaintext: plainText,
+      tags: selectedTags,
+      title: title,
+      user: auth?.currentUser?.uid,
       latesteditdate: todaysDate
     }));
 
