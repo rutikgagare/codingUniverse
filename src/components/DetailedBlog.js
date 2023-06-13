@@ -67,7 +67,7 @@ const DetailedBlog = () => {
   }
 
   const props = blogItems[0];
-
+  
   useEffect(() => {
     const sendData = async () => {
       if (send === false) {
@@ -92,11 +92,6 @@ const DetailedBlog = () => {
           <i class="fa-solid fa-thumbs-up"></i>
           <span>{props?.likes?.length - 1}</span>
         </div>}
-
-        {/* {!auth?.currentUser && <div className={classes.like} >
-          <i class="fa-solid fa-thumbs-up"></i>
-          <span>{props?.likes?.length - 1}</span>
-        </div>} */}
 
         <h2>{props?.title}</h2>
 
