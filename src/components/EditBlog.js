@@ -14,38 +14,36 @@ import Preview from './Preview1';
 import 'react-toastify/dist/ReactToastify.css';
 import Nav from './Nav';
 import Loader from './Loader';
+let send = false;
 
 const EditBlog = () => {
 
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const blogItemList = useSelector(state => state.article.items);
   const user = useSelector(state => state?.login?.logedIn);
-  const [loading, setLoading] = useState(false);
+
+  const params = useParams();
+  const blogid = params?.editblogitemId?.substring(1);
   const [editorData, setEditorData] = useState('');
   const [plainText, setPlainText] = useState('');
   const [title, setTitle] = useState('');
   const [selectedTags, setSelectedTags] = useState([]);
+  const [date,setDate] = useState('');
   const [todaysDate, setTodaysDate] = useState('');
   const [showPreview, setShowPreview] = useState({ name: "Open Preview", status: false });
 
-  useEffect(() => {
-    setLoading(true);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
+  useEffect(() => {
+    console.log("logined");
     auth.onAuthStateChanged((user) => {
-      if (user) {
+      if(user) {
         dispatch(loginActions.login());
       }
     });
+  }, []);
 
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 1000);
-
-    return () => {
-      clearTimeout(timer);
-    };
-
-  }, [dispatch]);
+  console.log("befor fetch",blogItemList);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -54,24 +52,35 @@ const EditBlog = () => {
       dispatch(articleActions.replace(data.items));
     }
     fetchData();
-  }, [dispatch]);
-
-  const params = useParams();
-  const blogid = params?.editblogitemId?.substring(1);
-  const blogItemList = useSelector(state => state.article.items);
-
-  const blogItems = blogItemList.filter((item) => {
-    return (item.id === blogid);
-  });
-  const blogItem = blogItems[0];
-  console.log(blogItem);
+    console.log("fetched");
+  }, []);
+  
 
   useEffect(()=>{
-    setTitle(blogItem?.title);
-    setEditorData(blogItem?.editorData);
+    const blogItems = blogItemList.filter((item) => {
+      return (item.id === blogid);
+    });
+    const blogItem = blogItems[0];
+
+    setEditorData(blogItem?.content);
     setPlainText(blogItem?.plainText);
+    setTitle(blogItem?.title);
     setSelectedTags(blogItem?.tags);
-  },[blogItem]);
+    setDate(blogItem?.date);
+    
+    const currentDate = new Date();
+
+    const options = {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric'
+    };
+
+    const formattedDate = currentDate.toLocaleDateString(undefined, options);
+    setTodaysDate(formattedDate);
+
+  },[blogItemList]);
+
 
   const tagsData = [
     { id: 1, name: 'HTML' },
@@ -86,19 +95,7 @@ const EditBlog = () => {
     { id: 10, name: 'Web development' },
   ];
 
-  useEffect(() => {
-    const currentDate = new Date();
-
-    const options = {
-      day: 'numeric',
-      month: 'long',
-      year: 'numeric'
-    };
-
-    const formattedDate = currentDate.toLocaleDateString(undefined, options);
-    setTodaysDate(formattedDate);
-  }, [])
-
+  
   const notify = (message) => {
     toast.success(message, {
       position: toast.POSITION.TOP_RIGHT,
@@ -153,7 +150,7 @@ const EditBlog = () => {
       plaintext: plainText,
       user: auth?.currentUser?.uid,
       author: auth?.currentUser?.displayName,
-      date: blogItem.date,
+      date: date,
       tags: selectedTags,
       email: auth?.currentUser?.email,
       latesteditdate: todaysDate
@@ -165,6 +162,7 @@ const EditBlog = () => {
     setTitle('');
     setPlainText('');
     setSelectedTags([]);
+    setTodaysDate('');
   }
 
   const redirecToRegister = () => {
@@ -173,6 +171,10 @@ const EditBlog = () => {
 
   useEffect(() => {
     const sendData = async () => {
+      if(send === false){
+        send = true;
+        return;
+      }
 
       await fetch('https://codinguniverse-20c51-default-rtdb.firebaseio.com/article.json', {
         method: "PUT",
@@ -184,8 +186,6 @@ const EditBlog = () => {
 
   return (
     <>
-      {loading && <Loader></Loader>}
-
       <ToastContainer></ToastContainer>
       <Nav></Nav>
 
