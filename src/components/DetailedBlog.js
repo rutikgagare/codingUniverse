@@ -88,7 +88,7 @@ const DetailedBlog = () => {
       <Nav></Nav>
       <div className={classes.blogItem}>
 
-        {auth?.currentUser && <div className={`${classes.like} ${props?.likes?.includes(auth?.currentUser?.uid) ? classes.active : ''}`} onClick={likeHandler}>
+        {props && auth?.currentUser && <div className={`${classes.like} ${props?.likes?.includes(auth?.currentUser?.uid) ? classes.active : ''}`} onClick={likeHandler}>
           <i class="fa-solid fa-thumbs-up"></i>
           <span>{props?.likes?.length - 1}</span>
         </div>}
