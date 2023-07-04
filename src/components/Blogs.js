@@ -25,8 +25,20 @@ const Blogs = () => {
         { id: 7, name: 'Front-end' },
         { id: 8, name: 'Rules' },
         { id: 9, name: 'Python' },
-        { id: 10, name: 'Web development' }
+        { id: 10, name: 'Web development' },
+        { id: 11, name: 'Node.js' },
+        { id: 12, name: 'Express.js' },
+        { id: 13, name: 'SQL' },
+        { id: 14, name: 'PHP' },
+        { id: 15, name: 'JAVA' },
+        { id: 16, name: 'Full Stack Development'},
+        { id: 17, name: 'Mobile App Development'},
+        { id: 18, name: 'Artificial Intelligence'},
+        { id: 19, name: 'Machine Learning'},
+        { id: 20, name: 'Data Science' },
     ];
+
+    
 
 
     const handleSearch = () => {
@@ -49,6 +61,12 @@ const Blogs = () => {
         setSearchTerm('');
     }
 
+    const handleSearchOnKeyDown = (event) =>{
+        if(event.key === 'Enter' ){
+            handleSearch();
+        }
+    }
+
     // Handler for selecting/deselecting a tag
     const handleTagSelection = (tagId) => {
         if (selectedTags.includes(tagId)) {
@@ -59,7 +77,7 @@ const Blogs = () => {
     };
 
     useEffect(() => {
-        if (selectedTags.length == 0) {
+        if (selectedTags.length === 0) {
             setDisplayContent(blogItems);
         }
         else {
@@ -72,7 +90,7 @@ const Blogs = () => {
     return (
         <>
             <div className={classes.search}>
-                <input type="text" placeholder="Search Article" value={searchTerm} onChange={(event) => { setSearchTerm(event.target.value.trim()) }} />
+                <input type="text" placeholder="Search Article" value={searchTerm} onChange={(event) => { setSearchTerm(event.target.value.trim()) }} onKeyDown={handleSearchOnKeyDown} />
                 <button onClick={handleSearch} >Search</button>
             </div>
 

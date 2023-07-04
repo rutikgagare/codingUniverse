@@ -6,7 +6,7 @@ const articleSlice = createSlice({
     initialState: { items: [] },
     reducers: {
         addArticle: (state, action) => {
-            state.items.push(action.payload);
+            state.items.unshift(action.payload);
         },
         deleteArticle: (state, action) => {
             const updatedItems = state.items.filter((item) => {
