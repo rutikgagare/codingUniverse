@@ -28,7 +28,7 @@ const EditBlog = () => {
   const [title, setTitle] = useState('');
   const [selectedTags, setSelectedTags] = useState([]);
   const [likes, setLikes] = useState([]);
-  const [date,setDate] = useState('');
+  const [date, setDate] = useState('');
   const [todaysDate, setTodaysDate] = useState('');
   const [showPreview, setShowPreview] = useState({ name: "Open Preview", status: false });
 
@@ -37,7 +37,7 @@ const EditBlog = () => {
 
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
-      if(user) {
+      if (user) {
         dispatch(loginActions.login());
       }
     });
@@ -52,9 +52,9 @@ const EditBlog = () => {
     }
     fetchData();
   }, []);
-  
 
-  useEffect(()=>{
+
+  useEffect(() => {
     const blogItems = blogItemList.filter((item) => {
       return (item.id === blogid);
     });
@@ -66,7 +66,7 @@ const EditBlog = () => {
     setSelectedTags(blogItem?.tags);
     setDate(blogItem?.date);
     setLikes(blogItem?.likes);
-    
+
     const currentDate = new Date();
 
     const options = {
@@ -78,8 +78,7 @@ const EditBlog = () => {
     const formattedDate = currentDate.toLocaleDateString(undefined, options);
     setTodaysDate(formattedDate);
 
-  },[blogItemList]);
-
+  }, [blogItemList]);
 
   const tagsData = [
     { id: 1, name: 'HTML' },
@@ -92,9 +91,18 @@ const EditBlog = () => {
     { id: 8, name: 'Rules' },
     { id: 9, name: 'Python' },
     { id: 10, name: 'Web development' },
+    { id: 11, name: 'Node.js' },
+    { id: 12, name: 'Express.js' },
+    { id: 13, name: 'SQL' },
+    { id: 14, name: 'PHP' },
+    { id: 15, name: 'JAVA' },
+    { id: 16, name: 'Full Stack Development' },
+    { id: 17, name: 'Mobile App Development' },
+    { id: 18, name: 'Artificial Intelligence' },
+    { id: 19, name: 'Machine Learning' },
+    { id: 20, name: 'Data Science' },
   ];
 
-  
   const notify = (message) => {
     toast.success(message, {
       position: toast.POSITION.TOP_RIGHT,
@@ -141,7 +149,7 @@ const EditBlog = () => {
 
   const editArticleHandler = (event) => {
     event.preventDefault();
-    console.log("text",plainText);
+    console.log("text", plainText);
 
     dispatch(articleActions.editArticle({
       author: auth?.currentUser?.displayName,
@@ -154,7 +162,7 @@ const EditBlog = () => {
       title: title,
       user: auth?.currentUser?.uid,
       latesteditdate: todaysDate,
-      likes:likes
+      likes: likes
     }));
 
     notify("Article Updated Successfully");
@@ -172,7 +180,7 @@ const EditBlog = () => {
 
   useEffect(() => {
     const sendData = async () => {
-      if(send === false){
+      if (send === false) {
         send = true;
         return;
       }

@@ -46,7 +46,6 @@ h3 {
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
   border-radius: 0.5rem;
   padding: 1rem;
-  min-height: 20rem;
 }
 
 .postDetails {
@@ -58,7 +57,7 @@ h3 {
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
   border-radius: 0.5rem;
   padding: 1rem;
-  max-height: 29rem;
+  max-height: 37rem;
 }
 
 .write .title {
@@ -113,7 +112,7 @@ form label {
 }
 
 .tags span {
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   font-weight: 400;
   padding: 0.5rem 1rem;
   border: 2px solid #0077cc;

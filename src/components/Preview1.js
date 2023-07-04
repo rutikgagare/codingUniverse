@@ -8,7 +8,7 @@ const Preview1 = (props) => {
       <div className={classes.blogItem}>
 
         <div className={classes.like}>
-          <i class="fas fa-heart"></i>
+          <i class="fa-solid fa-thumbs-up"></i>
         </div>
 
         <h2>{props.title}</h2>

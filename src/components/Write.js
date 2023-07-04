@@ -39,9 +39,14 @@ const Write = () => {
         { id: 5, name: 'C++' },
         { id: 6, name: 'DSA' },
         { id: 7, name: 'Front-end' },
-        { id: 8, name: 'Rules' },
+        { id: 8, name: 'Mobile App Development' },
         { id: 9, name: 'Python' },
         { id: 10, name: 'Web development' },
+        { id: 11, name: 'Node.js' },
+        { id: 12, name: 'Express.js' },
+        { id: 13, name: 'SQL' },
+        { id: 14, name: 'PHP' },
+        { id: 15, name: 'JAVA' },
     ];
 
     useEffect(() => {
@@ -147,7 +152,7 @@ const Write = () => {
             date: todaysDate,
             tags: selectedTags,
             email: auth?.currentUser?.email,
-            likes:['12345678']
+            likes: ['12345678']
         }));
 
         notify("Article published Successfully");
@@ -171,7 +176,7 @@ const Write = () => {
 
 
     return (
-        <>  
+        <>
             {loading && <Loader></Loader>}
             <ToastContainer></ToastContainer>
             <Nav></Nav>
@@ -190,6 +195,7 @@ const Write = () => {
                                 editor={ClassicEditor}
                                 data={editorData}
                                 onChange={handleEditorChange}
+                                className={classes.ck}
                             />
                         </div>
                     </div>
