@@ -23,7 +23,7 @@ const Blogs = () => {
         { id: 5, name: 'C++' },
         { id: 6, name: 'DSA' },
         { id: 7, name: 'Front-end' },
-        { id: 8, name: 'Rules' },
+        { id: 8, name: 'Mobile App Development' },
         { id: 9, name: 'Python' },
         { id: 10, name: 'Web development' },
         { id: 11, name: 'Node.js' },
@@ -31,16 +31,8 @@ const Blogs = () => {
         { id: 13, name: 'SQL' },
         { id: 14, name: 'PHP' },
         { id: 15, name: 'JAVA' },
-        { id: 16, name: 'Full Stack Development'},
-        { id: 17, name: 'Mobile App Development'},
-        { id: 18, name: 'Artificial Intelligence'},
-        { id: 19, name: 'Machine Learning'},
-        { id: 20, name: 'Data Science' },
     ];
-
     
-
-
     const handleSearch = () => {
         if (searchTerm.length !== 0) {
             setDisplayContent(blogItems.filter((article) => {
