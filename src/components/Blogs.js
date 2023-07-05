@@ -9,7 +9,6 @@ const Blogs = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [displayContent, setDisplayContent] = useState([]);
 
-
     useEffect(() => {
         setDisplayContent(blogItems);
     }, [blogItems])

@@ -4,7 +4,7 @@ import { loginActions } from '../store/loginSlice';
 import { articleActions } from '../store/articleSlice';
 import { auth } from '../config/firebase';
 import Nav from './Nav';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import classes from './BlogItem.module.css';
 import Loader from './Loader';
@@ -14,9 +14,10 @@ const DetailedBlog = () => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
   const [props,setProps] = useState([]);
+  const [suggestion,setSuggestion] = useState([]);
+  const [blogid,setBlogId] = useState('');
 
   const blogItemList = useSelector(state => state.article.items);
-
 
   useEffect(() => {
     setLoading(true);
@@ -51,14 +52,26 @@ const DetailedBlog = () => {
   });
 
   const params = useParams();
-  const blogid = params?.blogitemId?.substring(1);
-
+  useEffect(()=>{
+    console.log("params updates");
+    setBlogId(params?.blogitemId?.substring(1));
+  },[params]);
+  
   useEffect(()=>{
     const blogItems = blogItemList.filter((item) => {
       return (item?.id === blogid);
     });
     setProps(blogItems[0]);
-  },[blogItemList]);
+    console.log(props);
+
+    setSuggestion(blogItemList.map((article) => {
+      if(props?.id !== article?.id &props?.tags?.some((element) => article.tags.includes(element))){
+        // console.log(article);
+        return article;
+      }
+    }));
+
+  },[blogItemList,blogid]);
 
   const likeHandler = () => {
     if (props?.likes?.includes(auth?.currentUser?.uid)) {
@@ -71,8 +84,6 @@ const DetailedBlog = () => {
     }
   }
 
-
-  
   useEffect(() => {
     const sendData = async () => {
       if (send === false) {
@@ -107,6 +118,13 @@ const DetailedBlog = () => {
 
         <div className={classes.content} dangerouslySetInnerHTML={{ __html: props?.content }} />
       </div>
+
+      {suggestion && <div className={classes.suggestion}>
+        <h2>Suggestions</h2>
+        {suggestion.map((suggestedArticle)=>{
+          return(<Link to={`/:${suggestedArticle?.id}`}>{suggestedArticle?.title}</Link>)
+        })}
+      </div>}
     </div>
   )
 }
