@@ -119,8 +119,8 @@ const DetailedBlog = () => {
         <div className={classes.content} dangerouslySetInnerHTML={{ __html: props?.content }} />
       </div>
 
-      {suggestion && <div className={classes.suggestion}>
-        <h2>Suggestions</h2>
+      {suggestion.length > 0 && <div className={classes.suggestion}>
+        <h2>Suggested Articles</h2>
         {suggestion.map((suggestedArticle)=>{
           return(<Link to={`/:${suggestedArticle?.id}`}>{suggestedArticle?.title}</Link>)
         })}
