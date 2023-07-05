@@ -65,7 +65,7 @@ const DetailedBlog = () => {
     console.log(props);
 
     setSuggestion(blogItemList.map((article) => {
-      if(props?.id !== article?.id &props?.tags?.some((element) => article.tags.includes(element))){
+      if(props?.id !== article?.id && props?.tags?.some((element) => article.tags.includes(element))){
         // console.log(article);
         return article;
       }
