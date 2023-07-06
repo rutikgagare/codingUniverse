@@ -40,22 +40,22 @@ const AddJob = () => {
                 <h2>Add New Job Opening</h2>
                 <form onSubmit={addJobHandler}>
                     <label htmlFor="company">Comapny Name</label>
-                    <input type="text" id='company' value ={company} onChange={(event)=>{
+                    <input type="text" id='company' value ={company} placeholder='ex. CodingUniverse' onChange={(event)=>{
                         setCompany(event.target.value);
                     }} />
 
                     <label htmlFor="role">Job Role</label>
-                    <input type="text" id='role' value ={role} onChange={(event)=>{
+                    <input type="text" id='role' value ={role} placeholder='ex. React Js Developer' onChange={(event)=>{
                         setRole(event.target.value);
                     }}/>
 
                     <label htmlFor="exp">Experience</label>
-                    <input type="text" id='exp' value ={experience} onChange={(event)=>{
+                    <input type="text" id='exp' value ={experience} placeholder='ex. 0-1 years / freshers' onChange={(event)=>{
                         setExperience(event.target.value);
                     }} />
 
                     <label htmlFor="deadline">deadline</label>
-                    <input type="text" id='deadline' value={deadline} onChange={(event)=>{
+                    <input type="text" id='deadline' value={deadline} placeholder='ex. Limited Time Opportunity / Apply before Jul 18 2023' onChange={(event)=>{
                         setDeadline(event.target.value);
                     }} />
 
