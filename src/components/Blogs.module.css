@@ -1,7 +1,7 @@
 .blogs {
   width: 100%;
   margin: auto;
-  padding: 2rem;
+  padding: 2rem 0;
   gap: 1rem;
   overflow-y: scroll;
   scroll-behavior: smooth;

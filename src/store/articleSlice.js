@@ -35,7 +35,6 @@ const articleSlice = createSlice({
             state.items = state.items.map((item) => {
                 if(item.id === articleId) {
                     const updatedLikes = [...item.likes,auth?.currentUser?.uid];
-                    console.log(updatedLikes);
                     return {...item,likes:updatedLikes};
                 }
                 else{

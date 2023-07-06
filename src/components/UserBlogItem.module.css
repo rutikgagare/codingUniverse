@@ -69,6 +69,15 @@
     background-color: #0077CC;;
 }
 
+.like{
+    font-weight: 500;
+    font-size: 1.1rem;
+}
+
+.like i{
+    color: #0077CC;
+}
+
 @media screen and (max-width: 600px) {
     .blogItem{
         width: 95%;

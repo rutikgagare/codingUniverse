@@ -62,15 +62,13 @@ const DetailedBlog = () => {
       return (item?.id === blogid);
     });
     setProps(blogItems[0]);
-    console.log(props);
 
     setSuggestion(blogItemList.map((article) => {
-      if(props?.id !== article?.id && props?.tags?.some((element) => article.tags.includes(element))){
+      if(props?.id !== article?.id && props?.tags?.some((element) => article?.tags?.includes(element))){
         // console.log(article);
         return article;
       }
     }));
-
   },[blogItemList,blogid]);
 
   const likeHandler = () => {
@@ -119,12 +117,13 @@ const DetailedBlog = () => {
         <div className={classes.content} dangerouslySetInnerHTML={{ __html: props?.content }} />
       </div>
 
-      {suggestion.length > 0 && <div className={classes.suggestion}>
+      <div className={classes.suggestion}>
         <h2>Suggested Articles</h2>
+
         {suggestion.map((suggestedArticle)=>{
           return(<Link to={`/:${suggestedArticle?.id}`}>{suggestedArticle?.title}</Link>)
         })}
-      </div>}
+      </div>
     </div>
   )
 }

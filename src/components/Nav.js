@@ -10,10 +10,11 @@ const Nav = () => {
   return (
     <div className={classes.navbar}>
         <div className={classes.logo}>
-          <Link to={'/'}><h2><i class="fas fa-terminal"></i> CodingUniverse</h2></Link>
+          <Link to={'/'}><h2><i class="fa-solid fa-code"></i> CodingUniverse</h2></Link>
         </div>
         <div className={classes.nav}>
             <ul>
+                {/* {user && <li><Link to="/profile"><i class="fa-solid fa-briefcase"></i> Jobs</Link></li>} */}
                 <li><Link to={'/write'}><i class="fas fa-pen-to-square"></i> Write</Link></li>
                 {!user && <li><Link to={'/signup'}><i class="fa-sharp fa-solid fa-user-plus"></i></Link></li>}
                 {user && <li><Link to="/profile"><i class="fa-solid fa-user"></i></Link></li>}

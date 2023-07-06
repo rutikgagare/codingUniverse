@@ -35,8 +35,12 @@
 
 .navbar .nav ul li{
     padding: 0.5rem 0;
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 600;
+}
+
+.navbar .nav ul li a i{
+    margin: 0 0.2rem;
 }
 
 a{
