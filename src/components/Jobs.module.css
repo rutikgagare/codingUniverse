@@ -34,6 +34,7 @@
 
 .right h3{
     font-size: 1.2rem;
+    margin-bottom: 1.5rem;
 }
 
 .right p{
@@ -126,7 +127,7 @@
 
 @media screen and (max-width: 600px) {
     .intro{
-        padding: 2rem 1rem;
+        padding: 1rem 2rem;
         flex-direction: column;
     }
 
