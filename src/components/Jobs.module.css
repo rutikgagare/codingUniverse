@@ -54,8 +54,10 @@
 
 
 .alert{
+    padding: 0.5rem;
     width: 100%;
     text-align: center;
+    margin: 2rem 0;
 }
 
 @media screen and (max-width: 800px) {
