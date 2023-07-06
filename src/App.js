@@ -8,6 +8,7 @@ import Profile from './components/Profile';
 import SignInWrite from './components/SignInWrite';
 import SignUpWrite from './components/SignUpWrite';
 import EditBlog from './components/EditBlog';
+import Jobs from './components/Jobs';
 import { RouterProvider,createBrowserRouter } from 'react-router-dom';
 import './App.css';
 
@@ -19,8 +20,8 @@ const router = createBrowserRouter([
   { path: '/signupwrite', element: <SignUpWrite></SignUpWrite>},
   { path: '/write', element: <Write></Write> },
   { path: '/profile', element: <Profile></Profile> },
+  { path: '/jobs', element: <Jobs></Jobs> },
   { path: '/:blogitemId', element: <DetailedBlog/> },
-  { path: '/:blogitemId/:blogitemId', element: <DetailedBlog/> },
   { path: 'profile/:editblogitemId', element: <EditBlog/> },
 ]);
 

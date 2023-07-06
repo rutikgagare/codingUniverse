@@ -1,0 +1,138 @@
+
+.intro{
+    display: flex;
+    gap: 1rem;
+    padding: 2rem;
+    background-color: white;
+}
+
+.intro .left{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+}
+
+.intro .left img{
+    width: 100%;
+}
+
+.intro .right{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+    padding: 1rem;
+}
+
+.right h2{
+    font-weight: 600;
+    font-size: 1.8rem;
+    color: #1292ee;
+    margin-bottom: 1rem;
+}
+
+.right h3{
+    font-size: 1.2rem;
+}
+
+.right p{
+    font-weight: 400;
+    font-size: 1.1rem;
+}
+
+.jobs{
+    margin: 2rem auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    width: 90%;
+}
+
+/* job styling */
+.job{
+    padding: 1rem;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    border-radius: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    min-width: 30%;
+    background-color: white;
+}
+
+.job .top{
+    display: flex;
+    gap: 1rem;
+}
+
+.top .logo{
+    width: 20%;
+}
+
+.top .logo img{
+    width: 100%;
+}
+
+.description{
+    width: 80%;
+}
+
+.description h2{
+    margin: 0.3rem 0;
+    font-weight: 600;
+}
+
+.description h4{
+    margin: 0.2rem 0;
+    font-weight: 500;
+}
+
+.job .bottom{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.bottom .deadline{
+    width: 70%;
+} 
+
+.bottom h3{
+    font-size: 1rem;
+}
+
+.apply{
+    width: 30%;
+}
+
+.apply button{
+    padding:0.6rem 2rem;
+    border-radius: 0.5rem;
+    border: none;
+    outline: none;
+    background-color: #1292ee;
+    color: white;
+    font-size: 1rem;
+}
+
+@media screen and (max-width: 600px) {
+    .intro{
+        padding: 2rem 1rem;
+        flex-direction: column;
+    }
+
+    .intro .left{
+        width: 100%;
+    }
+    .intro .right{
+        width: 100%;
+    }
+
+    .job{
+        margin: auto;
+        width: 90%;
+    }
+}
