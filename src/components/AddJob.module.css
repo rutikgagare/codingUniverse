@@ -1,0 +1,39 @@
+.add_job{
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    margin: 2rem auto;
+}
+
+.add_job h2{
+    text-align: center;
+    margin: 1rem 0;
+}
+
+.add_job input{
+    display: block;
+    width: 100%;
+    margin-bottom: 0.5rem;
+    background-color: transparent;
+    border:1px solid grey;
+    border-radius: 0.2rem;
+}
+
+.add_job label{
+    display: block;
+}
+
+.add_job button{
+    padding: 0.5rem 1rem;
+    margin: 1rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0 0.5rem;
+    outline: none;
+    border: none;
+    border-radius: 0.5rem;
+    background-color: #1292EE;
+    color: white;
+    font-size: 1rem;
+}
