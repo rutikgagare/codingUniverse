@@ -51,7 +51,7 @@ a{
 @media screen and (max-width: 600px) {
     .logo h2{
         font-weight: 600;
-        font-size: 1.2rem;
+        font-size: 1.1rem;
     }
 
     .navbar .nav ul li{

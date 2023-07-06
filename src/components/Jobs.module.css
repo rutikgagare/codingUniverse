@@ -148,21 +148,35 @@
     }
 
     .job .top .logo{
-        width: 20%;
+        width: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .job .top .logo img{
+        width: 50%;
     }
 
     .job .top .description{
-        width: 70%;
         align-items:start;
         justify-content: center;
     }
 
+    .job .bottom{
+        flex-direction: column;
+    }
+
     .job .bottom .deadline{
-        width: 65%;
-        margin-bottom: 3rem;
+        width: 100%;
     } 
 
-    .job .bottom .apply{
-        width: 35%;
+    .job .apply{
+        width: 100%;
+        display: flex;
     } 
+
+    .job .apply button{
+        width: 100%;
+    }
 }
