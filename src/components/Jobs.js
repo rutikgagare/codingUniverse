@@ -13,14 +13,14 @@ const joblist = [
         url: "https://careers.nokia.com/jobs/augmented-automation-student-trainee-100340",
         logoURL: "https://media.geeksforgeeks.org/img-practice/PROD/jobs/09/Web/Header/783825d2-a33d-4ebb-b060-ed37824508be_1685359465.png",
     },
-    {
-        role: "React JS Developer",
-        company: "WhiteLotus Corporation",
-        experience: "Exp 1 years",
-        deadline: "Apply before Aug 03 2023",
-        url: "https://practice.geeksforgeeks.org/jobs/whitelotus-react-js-devs",
-        logoURL: "https://media.geeksforgeeks.org/img-practice/prod/jobs/4/Web/Header/whitelotus_1688379941.jpeg",
-    },
+    // {
+    //     role: "React JS Developer",
+    //     company: "WhiteLotus Corporation",
+    //     experience: "Exp 1 years",
+    //     deadline: "Apply before Aug 03 2023",
+    //     url: "https://practice.geeksforgeeks.org/jobs/whitelotus-react-js-devs",
+    //     logoURL: "https://media.geeksforgeeks.org/img-practice/prod/jobs/4/Web/Header/whitelotus_1688379941.jpeg",
+    // },
     {
         role: "Software Engineer",
         company: "NatWest",
@@ -35,6 +35,14 @@ const joblist = [
         experience: "Fresher (2024 Batch)",
         deadline: "Limited Time Opportunity",
         url: "https://www.groundtruth.com/job/4923253004-2/",
+        logoURL: "https://media.geeksforgeeks.org/img-practice/PROD/jobs/09/Web/Header/783825d2-a33d-4ebb-b060-ed37824508be_1685359465.png",
+    },
+    {
+        role: "Data Analyst Intern",
+        company: "GroundTruth",
+        experience: "Fresher (2024 Batch)",
+        deadline: "Limited Time Opportunity",
+        url: "https://www.groundtruth.com/job/4923148004-2/",
         logoURL: "https://media.geeksforgeeks.org/img-practice/PROD/jobs/09/Web/Header/783825d2-a33d-4ebb-b060-ed37824508be_1685359465.png",
     },
 ]
