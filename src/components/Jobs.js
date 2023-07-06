@@ -2,7 +2,42 @@ import React from 'react';
 import Nav from './Nav';
 import classes from './Jobs.module.css';
 import img from './Jobs.png';
-import { Link } from 'react-router-dom';
+import Job from './Job.js';
+
+const joblist = [
+    {
+        role: "Augmented Automation Student Trainee",
+        company: "Nokia",
+        experience: "Fresher (2024 batch)",
+        deadline: "Limited Time Opportunity",
+        url: "https://careers.nokia.com/jobs/augmented-automation-student-trainee-100340",
+        logoURL: "https://media.geeksforgeeks.org/img-practice/PROD/jobs/09/Web/Header/783825d2-a33d-4ebb-b060-ed37824508be_1685359465.png",
+    },
+    {
+        role: "React JS Developer",
+        company: "WhiteLotus Corporation",
+        experience: "Exp 1 years",
+        deadline: "Apply before Aug 03 2023",
+        url: "https://practice.geeksforgeeks.org/jobs/whitelotus-react-js-devs",
+        logoURL: "https://media.geeksforgeeks.org/img-practice/prod/jobs/4/Web/Header/whitelotus_1688379941.jpeg",
+    },
+    {
+        role: "Software Engineer",
+        company: "NatWest",
+        experience: "Fresher",
+        deadline: "Apply before Jul 18 2023",
+        url: "https://jobs.natwestgroup.com/jobs/13001285-software-engineer",
+        logoURL: "https://media.geeksforgeeks.org/img-practice/PROD/jobs/09/Web/Header/783825d2-a33d-4ebb-b060-ed37824508be_1685359465.png",
+    },
+    {
+        role: "Software Engineering Intern",
+        company: "GroundTruth",
+        experience: "Fresher (2024 Batch)",
+        deadline: "Limited Time Opportunity",
+        url: "https://www.groundtruth.com/job/4923253004-2/",
+        logoURL: "https://media.geeksforgeeks.org/img-practice/PROD/jobs/09/Web/Header/783825d2-a33d-4ebb-b060-ed37824508be_1685359465.png",
+    },
+]
 
 const Jobs = () => {
     return (
@@ -21,76 +56,22 @@ const Jobs = () => {
             </div>
 
             <div className={classes.jobs}>
-                <div className={classes.job}>
-                    <div className={classes.top}>
-                        <div className={classes.logo}>
-                            <img src="https://media.geeksforgeeks.org/img-practice/prod/jobs/4/Web/Header/whitelotus_1688379941.jpeg" alt="" />
-                        </div>
-                        <div className={classes.description}>
-                            <h2>React JS Developer</h2>
-                            <h4>WhiteLotus Corporation</h4>
-                            <h4>Exp 1 years</h4>
-                        </div>
-                    </div>
+                {joblist.map((job) => {
+                    return (
+                        <Job 
+                            role={job.role}
+                            company={job.company}
+                            deadline={job.deadline}
+                            experience={job.experience}
+                            url={job.url}
+                            logoURL={job.logoURL}
+                        ></Job>
+                    )
+                })}
+            </div>
 
-                    <hr />
-
-                    <div className={classes.bottom}>
-                        <div className={classes.deadline}>
-                            <h3>Apply before Aug 03 2023</h3>
-                        </div>
-                        <div className={classes.apply}>
-                            <button><Link to="https://practice.geeksforgeeks.org/jobs/whitelotus-react-js-devs">Apply</Link></button>
-                        </div>
-                    </div>
-                </div>
-
-                <div className={classes.job}>
-                    <div className={classes.top}>
-                        <div className={classes.logo}>
-                            <img src="https://media.geeksforgeeks.org/img-practice/PROD/jobs/09/Web/Header/783825d2-a33d-4ebb-b060-ed37824508be_1685359465.png" alt="" />
-                        </div>
-                        <div className={classes.description}>
-                            <h2>Augmented Automation Student Trainee</h2>
-                            <h4>Nokia</h4>
-                            <h4>Fresher(2024 Batch)</h4>
-                        </div>
-                    </div>
-
-                    <hr />
-
-                    <div className={classes.bottom}>
-                        <div className={classes.deadline}>
-                            <h3>Limited Time Opportunity</h3>
-                        </div>
-                        <div className={classes.apply}>
-                            <button><Link to="https://careers.nokia.com/jobs/augmented-automation-student-trainee-100340">Apply</Link></button>
-                        </div>
-                    </div>
-                </div>
-                <div className={classes.job}>
-                    <div className={classes.top}>
-                        <div className={classes.logo}>
-                            <img src="https://media.geeksforgeeks.org/img-practice/PROD/jobs/09/Web/Header/783825d2-a33d-4ebb-b060-ed37824508be_1685359465.png" alt="" />
-                        </div>
-                        <div className={classes.description}>
-                            <h2>Software Engineer</h2>
-                            <h4>NatWest</h4>
-                            <h4>Fresher</h4>
-                        </div>
-                    </div>
-
-                    <hr />
-
-                    <div className={classes.bottom}>
-                        <div className={classes.deadline}>
-                            <h3>Apply before Jul 18 2023</h3>
-                        </div>
-                        <div className={classes.apply}>
-                            <button><Link to="https://jobs.natwestgroup.com/jobs/13001285-software-engineer">Apply</Link></button>
-                        </div>
-                    </div>
-                </div>
+            <div className={classes.alert}>
+                <h3>🚀 Get ready for an incredible journey! Stay tuned for exciting job opportunities coming soon! 🌟</h3>
             </div>
         </>
     );
