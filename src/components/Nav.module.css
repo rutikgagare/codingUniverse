@@ -55,6 +55,10 @@ a{
     }
 
     .navbar .nav ul li{
-        font-size: 0.9rem;
+        font-size: 0.8rem;
+    }
+
+    .navbar .nav ul{
+        gap: 0.8rem;
     }
 }
