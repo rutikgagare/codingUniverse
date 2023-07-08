@@ -1,54 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import Nav from './Nav';
 import classes from './Jobs.module.css';
 import img from './Jobs.png';
 import Job from './Job.js';
-
-// const joblist = [
-//     {
-//         role: "Augmented Automation Student Trainee",
-//         company: "Nokia",
-//         experience: "Fresher (2024 batch)",
-//         deadline: "Limited Time Opportunity",
-//         url: "https://careers.nokia.com/jobs/augmented-automation-student-trainee-100340",
-//         logoURL: "https://media.geeksforgeeks.org/img-practice/PROD/jobs/09/Web/Header/783825d2-a33d-4ebb-b060-ed37824508be_1685359465.png",
-//     },
-//     // {
-//     //     role: "React JS Developer",
-//     //     company: "WhiteLotus Corporation",
-//     //     experience: "Exp 1 years",
-//     //     deadline: "Apply before Aug 03 2023",
-//     //     url: "https://practice.geeksforgeeks.org/jobs/whitelotus-react-js-devs",
-//     //     logoURL: "https://media.geeksforgeeks.org/img-practice/prod/jobs/4/Web/Header/whitelotus_1688379941.jpeg",
-//     // },
-//     {
-//         role: "Software Engineer",
-//         company: "NatWest",
-//         experience: "Fresher",
-//         deadline: "Apply before Jul 18 2023",
-//         url: "https://jobs.natwestgroup.com/jobs/13001285-software-engineer",
-//         logoURL: "https://media.geeksforgeeks.org/img-practice/PROD/jobs/09/Web/Header/783825d2-a33d-4ebb-b060-ed37824508be_1685359465.png",
-//     },
-//     {
-//         role: "Software Engineering Intern",
-//         company: "GroundTruth",
-//         experience: "Fresher (2024 Batch)",
-//         deadline: "Limited Time Opportunity",
-//         url: "https://www.groundtruth.com/job/4923253004-2/",
-//         logoURL: "https://media.geeksforgeeks.org/img-practice/PROD/jobs/09/Web/Header/783825d2-a33d-4ebb-b060-ed37824508be_1685359465.png",
-//     },
-//     {
-//         role: "Data Analyst Intern",
-//         company: "GroundTruth",
-//         experience: "Fresher (2024 Batch)",
-//         deadline: "Limited Time Opportunity",
-//         url: "https://www.groundtruth.com/job/4923148004-2/",
-//         logoURL: "https://media.geeksforgeeks.org/img-practice/PROD/jobs/09/Web/Header/783825d2-a33d-4ebb-b060-ed37824508be_1685359465.png",
-//     },
-// ]
+import { auth } from '../config/firebase';
+import { loginActions } from '../store/loginSlice';
+import { useDispatch } from 'react-redux';
+import Loader from './Loader';
 
 const Jobs = () => {
+    const [loading,setLoading] = useState(false);
     const [jobList,setJobList] = useState([]);
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        setLoading(true);
+    
+        auth.onAuthStateChanged((user) => {
+          if (user) {
+            dispatch(loginActions.login());
+          }
+        });
+    
+        const timer = setTimeout(() => {
+          setLoading(false);
+        }, 1000);
+    
+        return () => {
+          clearTimeout(timer);
+        };
+      }, [dispatch]);
 
     useState(()=>{
         const fetchData = async()=>{
@@ -62,6 +44,7 @@ const Jobs = () => {
 
     return (
         <>
+            {loading && <Loader></Loader>}
             <Nav></Nav>
 
             <div className={classes.intro}>

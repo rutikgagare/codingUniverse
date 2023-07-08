@@ -1,14 +1,39 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import Nav from './Nav';
 import classes from './AddJob.module.css';
+import { useDispatch } from 'react-redux';
+import { auth } from '../config/firebase';
+import { loginActions } from '../store/loginSlice';
+import Loader from './Loader';
 
 const AddJob = () => {
+    const [loading,setLoading] = useState(false);
     const [company,setCompany] = useState('');
     const [role,setRole] = useState('');
     const [experience,setExperience] = useState('');
     const [deadline,setDeadline] = useState('');
     const [url,setUrl] = useState('');
     const [logo,setLogo] = useState('');
+    
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        setLoading(true);
+    
+        auth.onAuthStateChanged((user) => {
+          if (user) {
+            dispatch(loginActions.login());
+          }
+        });
+    
+        const timer = setTimeout(() => {
+          setLoading(false);
+        }, 1000);
+    
+        return () => {
+          clearTimeout(timer);
+        };
+      }, [dispatch]);
 
     const addJobHandler = async (event) =>{
         event.preventDefault();
@@ -35,6 +60,7 @@ const AddJob = () => {
 
     return (
         <>  
+            {loading && <Loader></Loader>}
             <Nav></Nav>
             <div className={classes.add_job}>
                 <h2>Add New Job Opening</h2>
