@@ -8,25 +8,27 @@
 .add_job h2{
     text-align: center;
     margin: 1rem 0;
+    margin-bottom: 2rem;
     color: #1292ee;
 }
 
 .add_job input{
     display: block;
     width: 100%;
-    margin-bottom: 0.5rem;
     background-color: transparent;
     border:1px solid grey;
     border-radius: 0.2rem;
+    outline: none;
 }
 
 .add_job label{
+    margin-top: 1rem;
     display: block;
 }
 
 .add_job button{
     padding: 0.5rem 1rem;
-    margin: 1rem 0;
+    margin: 2rem 0;
     display: flex;
     justify-content: center;
     align-items: center;
