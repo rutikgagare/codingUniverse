@@ -54,7 +54,7 @@ const AddJob = () => {
                         setExperience(event.target.value);
                     }} />
 
-                    <label htmlFor="deadline">deadline</label>
+                    <label htmlFor="deadline">Deadline</label>
                     <input type="text" id='deadline' value={deadline} placeholder='ex. Limited Time Opportunity / Apply before Jul 18 2023' onChange={(event)=>{
                         setDeadline(event.target.value);
                     }} />
