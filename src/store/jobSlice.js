@@ -16,7 +16,14 @@ const jobSlice = createSlice({
             state.items = updatedItems;
         },
         updateJob:(state,action)=>{
-            
+            state.items = state.items.map((item)=>{
+                if(item.id == action.payload.id){
+                    return action.payload;
+                }
+
+                return item;
+            });
+            console.log("update ",state.items);
         },
         replace:(state,action)=>{
             state.items = action.payload;

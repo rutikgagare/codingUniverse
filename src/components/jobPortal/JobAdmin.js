@@ -1,4 +1,4 @@
-import React, {useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import classes from './JobAdmin.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { jobActions } from '../../store/jobSlice';
@@ -16,6 +16,7 @@ const JobAdmin = (props) => {
   const [deadline, setDeadline] = useState(props.deadline);
   const [url, setUrl] = useState(props.url);
   const [logo, setLogo] = useState(props.logoURL);
+  const [update, setUpdate] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -30,8 +31,23 @@ const JobAdmin = (props) => {
     dispatch(jobActions.deleteJob(props.id));
   }
 
-  const updateJobHandler = () =>{
+  const triggerUpdateHandler = () =>{
+    setUpdate(!update);
+  }
 
+  const updateJobHandler = (event) => {
+    event.preventDefault();
+
+    dispatch(jobActions.updateJob({
+      id:props.id,
+      role: role,
+      company: company,
+      experience: experience,
+      deadline: deadline,
+      url: url,
+      logo: logo
+    }));
+    triggerUpdateHandler();
   }
 
   useEffect(() => {
@@ -52,7 +68,7 @@ const JobAdmin = (props) => {
 
   return (
     <>
-      <div className={classes.job_admin}>
+      {!update && <div className={classes.job_admin}>
         <div className={classes.left}>
           <h2>Company : {props.company}</h2>
           <h3>Job Role : {props.role}</h3>
@@ -62,13 +78,27 @@ const JobAdmin = (props) => {
           <h3>Logo URL : <Link to={props.logoURL}>{props.logoURL}</Link></h3>
         </div>
         <div className={classes.right}>
-          <button>Update</button>
+          <button onClick={triggerUpdateHandler}>Update</button>
           <button onClick={deleteJobHandler}>Delete</button>
         </div>
-      </div>
+      </div>}
 
-      {
-        
+      {update &&
+
+        <form onSubmit={updateJobHandler} className={classes.job_admin}>
+          <div className={classes.left}>
+            <h2>Company : <input value={company} onChange={(event)=>{setCompany(event.target.value)}}></input></h2>
+            <h3>Job Role : <input value={role} onChange={(event)=>{setRole(event.target.value)}}></input></h3>
+            <h3>Experience : <input value={experience} onChange={(event)=>{setExperience(event.target.value)}}></input></h3>
+            <h3>Deadline : <input value={deadline} onChange={(event)=>{setDeadline(event.target.value)}}></input></h3>
+            <h3>Application URl : <input value={url} onChange={(event)=>{setUrl(event.target.value)}}></input></h3>
+            <h3>Logo URL : <input value={logo} onChange={(event)=>{setLogo(event.target.value)}}></input></h3>
+          </div>
+          <div className={classes.right}>
+            <button type='submit'>Submit Changes</button>
+            <button onClick={triggerUpdateHandler}>Cancel</button>
+          </div>
+        </form>
       }
 
     </>

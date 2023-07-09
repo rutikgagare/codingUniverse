@@ -51,6 +51,16 @@
     font-size: 1rem;
 }
 
+form .left input{
+    width: 100%;
+    outline: none;
+    border-radius: 0.2rem;
+}
+
+form .left input{
+    margin-top: 0.5rem;
+}
+
 @media screen and (max-width: 800px) {
     .job_admin{
         flex-direction: column;
