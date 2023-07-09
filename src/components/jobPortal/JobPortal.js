@@ -1,16 +1,18 @@
 import React, { useState,useEffect } from 'react';
-import Nav from './Nav';
-import classes from './Jobs.module.css';
+import Nav from '../Nav';
+import classes from './JobPortal.module.css';
 import img from './Jobs.png';
-import Job from './Job.js';
-import { auth } from '../config/firebase';
-import { loginActions } from '../store/loginSlice';
+import Job from './Job';
+import {auth} from '../../config/firebase';
+import { loginActions } from '../../store/loginSlice';
+import { jobActions } from '../../store/jobSlice';
 import { useDispatch } from 'react-redux';
-import Loader from './Loader';
+import { useSelector } from "react-redux";
+import Loader from '../Loader';
 
-const Jobs = () => {
+const JobPortal = () => {
     const [loading,setLoading] = useState(false);
-    const [jobList,setJobList] = useState([]);
+    const jobList = useSelector(state => state?.job?.items);
 
     const dispatch = useDispatch();
 
@@ -36,8 +38,7 @@ const Jobs = () => {
         const fetchData = async()=>{
             const response = await fetch('https://codinguniverse-20c51-default-rtdb.firebaseio.com/jobs.json');
             const data = await response.json();
-            console.log(data);
-            setJobList(Object.values(data));
+            dispatch(jobActions.replace(data.items));
         }
         fetchData();
     },[]);
@@ -59,9 +60,11 @@ const Jobs = () => {
             </div>
 
             <div className={classes.jobs}>
-                {jobList.map((job) => {
+                {jobList?.map((job) => {
                     return (
                         <Job 
+                            key = {job.id}
+                            id = {job.id}
                             role={job.role}
                             company={job.company}
                             deadline={job.deadline}
@@ -80,4 +83,4 @@ const Jobs = () => {
     );
 }
 
-export default Jobs;
+export default JobPortal;

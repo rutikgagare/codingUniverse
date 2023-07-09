@@ -1,0 +1,39 @@
+
+.job_admin .heading{
+    margin: 2rem 0;
+    text-align: center;
+    font-weight: 600;
+}
+
+.jobs {
+    margin: 2rem auto;
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.add_job{
+    width: 80%;
+    margin: 1rem auto;
+    /* border: 2px solid red; */
+}
+
+.add_job button{
+    width: 50%;
+    display: block;
+    margin: 1rem auto;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    outline: none;
+    background-color: transparent;
+    font-size: 1rem;
+}
+
+@media screen and (max-width: 800px) {
+    .add_job button{
+        width: 95%;
+    }
+}

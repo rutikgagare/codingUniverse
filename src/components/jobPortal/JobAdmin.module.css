@@ -1,0 +1,74 @@
+.job_admin{
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    width: 100%;
+    display: flex;
+    gap: 1rem;
+}
+
+.job_admin .left{
+    width: 70%;
+}
+
+.job_admin .right{
+    width: 30%;
+}
+
+.job_admin .left h2{
+    font-weight: 500;
+    font-size: 1.2rem;
+}
+
+.job_admin .left h3{
+    font-weight: 400;
+    font-size: 1rem;
+}
+
+.job_admin .left h3 a{
+    color:blue;
+}
+
+.job_admin .right{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.job_admin .right button{
+    margin: 0rem auto;
+    width: 80%;
+    padding: 0.5rem 1rem;
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0 0.5rem;
+    outline: none;
+    border: none;
+    border-radius: 0.5rem;
+    background-color: #1292EE;
+    color: white;
+    font-size: 1rem;
+}
+
+@media screen and (max-width: 800px) {
+    .job_admin{
+        flex-direction: column;
+        width: 95%;
+        overflow-wrap: break-word;
+    }
+    .job_admin .left{
+        width: 100%;
+    }
+    .job_admin .right{
+        display: flex;
+        /* flex-direction: row; */
+        gap: 0.2rem;
+        width: 100%;
+    }
+
+    .job_admin .right button{
+        width: 100%;
+    }
+}

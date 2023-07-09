@@ -8,8 +8,9 @@ import Profile from './components/Profile';
 import SignInWrite from './components/SignInWrite';
 import SignUpWrite from './components/SignUpWrite';
 import EditBlog from './components/EditBlog';
-import Jobs from './components/Jobs';
-import AddJob from './components/AddJob';
+import JobPortal from './components/jobPortal/JobPortal';
+import AddJob from './components/jobPortal/AddJob';
+import Admin from './components/jobPortal/Admin';
 import { RouterProvider,createBrowserRouter } from 'react-router-dom';
 import './App.css';
 
@@ -21,10 +22,11 @@ const router = createBrowserRouter([
   { path: '/signupwrite', element: <SignUpWrite></SignUpWrite>},
   { path: '/write', element: <Write></Write> },
   { path: '/profile', element: <Profile></Profile> },
-  { path: '/jobs', element: <Jobs></Jobs> },
+  { path: '/jobs', element: <JobPortal></JobPortal> },
   { path: '/:blogitemId', element: <DetailedBlog/> },
   { path: 'profile/:editblogitemId', element: <EditBlog/> },
-  { path: '/addJob', element: <AddJob/> },
+  { path: '/admin/addJob', element: <AddJob/> },
+  { path: '/admin', element: <Admin/> },
 ]);
 
 const App = () => {

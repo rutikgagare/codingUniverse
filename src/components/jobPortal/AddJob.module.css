@@ -2,12 +2,12 @@
     display: flex;
     flex-direction: column;
     width: 60%;
-    margin: 2rem auto;
+    margin: 1rem auto;
 }
 
 .add_job h2{
     text-align: center;
-    margin: 1rem 0;
+    margin: 0.5rem 0;
     margin-bottom: 2rem;
     color: #1292ee;
 }
@@ -19,7 +19,7 @@
     border:1px solid grey;
     border-radius: 0.2rem;
     outline: none;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
 }
 
 .add_job label{
@@ -27,6 +27,8 @@
 }
 
 .add_job button{
+    margin: 0rem auto;
+    width: 50%;
     padding: 0.5rem 1rem;
     margin-top: 1rem;
     display: flex;

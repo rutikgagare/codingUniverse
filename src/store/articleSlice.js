@@ -14,8 +14,6 @@ const articleSlice = createSlice({
                     return item;
                 }
             });
-            console.log(updatedItems);
-
             state.items = updatedItems;
         },
         editArticle: (state, action) => {
