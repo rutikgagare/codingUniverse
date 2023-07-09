@@ -33,17 +33,16 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    gap: 1rem;
 }
 
 .job_admin .right button{
     margin: 0rem auto;
     width: 80%;
     padding: 0.5rem 1rem;
-    margin-top: 1rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 0 0.5rem;
     outline: none;
     border: none;
     border-radius: 0.5rem;
@@ -55,7 +54,7 @@
 @media screen and (max-width: 800px) {
     .job_admin{
         flex-direction: column;
-        width: 95%;
+        width: 90%;
         overflow-wrap: break-word;
     }
     .job_admin .left{
@@ -63,8 +62,6 @@
     }
     .job_admin .right{
         display: flex;
-        /* flex-direction: row; */
-        gap: 0.2rem;
         width: 100%;
     }
 
