@@ -54,7 +54,7 @@
 @media screen and (max-width: 800px) {
     .job_admin{
         flex-direction: column;
-        width: 90%;
+        width: 95%;
         overflow-wrap: break-word;
     }
     .job_admin .left{
