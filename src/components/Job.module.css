@@ -7,14 +7,14 @@
     flex-direction: column;
     gap: 1rem;
     width: 20rem;
-    height: 17rem;
+    height: 18rem;
     background-color: white;
 }
 
 .job .top{
     display: flex;
     gap: 1rem;
-    height: 60%;
+    height: 50%;
     /* background-color: red; */
 }
 
@@ -46,7 +46,7 @@
 
 .job .bottom{
     /* background-color: yellow; */
-    height: 40%;
+    height: 50%;
 }
 
 .bottom .deadline{
