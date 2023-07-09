@@ -48,4 +48,8 @@
     .add_job{
         width: 90%;
     }
+
+    .add_job button{
+        width: 100%;
+    }
 }
