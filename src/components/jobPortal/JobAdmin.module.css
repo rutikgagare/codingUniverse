@@ -64,7 +64,7 @@ form .left input{
 @media screen and (max-width: 800px) {
     .job_admin{
         flex-direction: column;
-        width: 95%;
+        width: 92%;
         overflow-wrap: break-word;
     }
     .job_admin .left{
