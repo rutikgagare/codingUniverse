@@ -9,6 +9,7 @@
 
 .job_admin .left{
     width: 70%;
+    overflow-wrap: break-word;
 }
 
 .job_admin .right{
