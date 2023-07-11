@@ -20,6 +20,22 @@ const Admin = () => {
   const navigte = useNavigate();
 
   useEffect(() => {
+    const sendData = async () => {
+
+      if (send === false) {
+        send = true;
+        return;
+      }
+
+      await fetch('https://codinguniverse-20c51-default-rtdb.firebaseio.com/jobs.json', {
+        method: "PUT",
+        body: JSON.stringify({ items: jobList })
+      });
+    }
+    sendData();
+  }, [jobList]);
+
+  useEffect(() => {
     setLoading(true);
 
     auth.onAuthStateChanged((user) => {
@@ -49,23 +65,6 @@ const Admin = () => {
   const addJobHandler = () => {
     navigte('/admin/addJob');
   }
-
-
-  useEffect(() => {
-    const sendData = async () => {
-
-      if (send === false) {
-        send = true;
-        return;
-      }
-
-      await fetch('https://codinguniverse-20c51-default-rtdb.firebaseio.com/jobs.json', {
-        method: "PUT",
-        body: JSON.stringify({ items: jobList })
-      });
-    }
-    sendData();
-  }, [jobList]);
 
   return (
     <>

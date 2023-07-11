@@ -8,7 +8,7 @@ let send = false;
 const JobAdmin = (props) => {
 
   const dispatch = useDispatch();
-  const jobList = useSelector(state => state?.job?.items);
+  // const jobList = useSelector(state => state?.job?.items);
 
   const [company, setCompany] = useState(props.company);
   const [role, setRole] = useState(props.role);
@@ -18,14 +18,30 @@ const JobAdmin = (props) => {
   const [logo, setLogo] = useState(props.logoURL);
   const [update, setUpdate] = useState(false);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch('https://codinguniverse-20c51-default-rtdb.firebaseio.com/jobs.json');
-      const data = await response.json();
-      dispatch(jobActions.replace(data.items));
-    }
-    fetchData();
-  }, []);
+  // useEffect(() => {
+  //   const sendData = async () => {
+
+  //     if (send === false) {
+  //       send = true;
+  //       return;
+  //     }
+
+  //     await fetch('https://codinguniverse-20c51-default-rtdb.firebaseio.com/jobs.json', {
+  //       method: "PUT",
+  //       body: JSON.stringify({ items: jobList })
+  //     });
+  //   }
+  //   sendData();
+  // }, [jobList]);
+
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const response = await fetch('https://codinguniverse-20c51-default-rtdb.firebaseio.com/jobs.json');
+  //     const data = await response.json();
+  //     dispatch(jobActions.replace(data.items));
+  //   }
+  //   fetchData();
+  // }, []);
 
   const deleteJobHandler = () => {
     dispatch(jobActions.deleteJob(props.id));
@@ -49,22 +65,6 @@ const JobAdmin = (props) => {
     }));
     triggerUpdateHandler();
   }
-
-  useEffect(() => {
-    const sendData = async () => {
-
-      if (send === false) {
-        send = true;
-        return;
-      }
-
-      await fetch('https://codinguniverse-20c51-default-rtdb.firebaseio.com/jobs.json', {
-        method: "PUT",
-        body: JSON.stringify({ items: jobList })
-      });
-    }
-    sendData();
-  }, [jobList]);
 
   return (
     <>
